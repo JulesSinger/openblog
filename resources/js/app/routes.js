@@ -1,18 +1,26 @@
-import ExampleComponent from '../ExampleComponent.vue'
-import Login from '../Login.vue'
 export const routes = [
   {
-    path: '/example',
-    name: 'exa',
-    component: ExampleComponent,
-    meta: { title: 'Example' },
+    path: '/',
+    name: 'Home',
+    component: () => import('../Home.vue') ,
+    meta: { title: 'Accueil' }
   },
   {
-    path: '/login',
-    name: 'login',
-    component: Login,
-    meta: { title: 'Login' },
+    path: '/article',
+    name: 'Article',
+    component: () => import('../articles/Article.vue'),
+    meta: { title: 'Article' }
+  },
+  {
+    path: '/quotes',
+    name: 'Quotes',
+    component: () => import('../quotes/Quotes.vue'),
+    meta: { title: 'Citations' }
+  },
+   {
+    path: '/about',
+    name: 'About',
+    component: () => import('../About.vue'),
+    meta: { title: 'A Propos' }
   }
 ]
-
-export default { routes }

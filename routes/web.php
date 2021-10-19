@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('base', ['title' => 'Accueil']);
+}); 
 
-Route::get('/example', function () {
-    return view('base', ['title' => 'Example']);
-});
+Route::get('/quotes', function () {
+    return view('base', ['title' => 'Citations']);
+}); 
+
+Route::get('/about', function () {
+    return view('base', ['title' => 'A Propos']);
+}); 
+
+Route::get('/article', function () {
+    return view('base', ['title' => 'Article']);
+}); 

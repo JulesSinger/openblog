@@ -1,0 +1,55 @@
+#quotes-page {
+  & {
+    margin: 3rem 0;
+  }
+
+  .quote {
+    & {
+      margin: auto;
+      margin-top: 3rem;
+      width: 30vw;
+    }
+
+    .quote-header {
+      & {
+        padding: 0.7rem;
+        border-top-left-radius: 5px ;
+        border-top-right-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--clr-markup);
+      }
+
+      button {
+        width: 6rem;
+        height: 2rem;
+        padding: 0;
+      }
+
+      button:hover {
+        background-color: var(--clr-bigmarkup);
+      }
+
+      p {
+        color: white;
+      }
+    }
+
+    .quote-container {
+
+      & {
+        padding: 1rem;
+      }
+
+      #quote-text {
+        text-align: center;
+      }
+
+      #quote-author {
+        text-align: center;
+        font-weight: var(--font-family);
+      }
+    }
+  }
+}

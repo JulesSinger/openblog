@@ -1,0 +1,34 @@
+html {
+  --clr-primary: #F4F4F4; 
+  --clr-secondary: #FFFFFF; 
+  --clr-light: #F4F4F4;
+  --clr-markup: #0067B8; 
+  --clr-bigmarkup: #00518F;
+  --clr-text: #000000;
+  --clr-contrast: #FFF;
+
+  --font-family: "Montserrat";
+  --font-bold: "Montserrat bold";
+  --font-thin: "Montserrat thin";
+
+  --shadow-main: 5px 5px 10px 0 rgba(0, 0, 0, 0.15),
+                  5px 5px 10px 0 rgba(255, 255, 255, 0.2);
+}
+
+html[data-theme='dark'] {
+  --clr-primary: #2F384C;
+  --clr-secondary: #1F2533;
+  --clr-markup: #FFBA08;
+  --clr-bigmarkup: #F5AF00;
+  --clr-text: #FFF;
+  --shadow-main: 5px 5px 10px 0 rgba(0, 0, 0, 0.15),
+                  5px 5px 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 420ms!important;
+  transition-delay: 0!important;
+}
