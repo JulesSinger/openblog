@@ -125,6 +125,10 @@
     a:hover {
       color: var(--clr-markup)
     }
+
+    a.router-link-active {
+      color: var(--clr-markup)
+    }
   }
 }
 
