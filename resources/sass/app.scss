@@ -1,7 +1,7 @@
-@import './variables.scss';
-@import './base.scss';
-@import './article.scss';
-@import './header.scss';
-@import './comment.scss';
-@import './quote.scss';
-@import './about.scss';
+@import './commons/variables.scss';
+@import './commons/base.scss';
+@import './pages/article.scss';
+@import './layouts/header.scss';
+@import './pages/comment.scss';
+@import './pages/quote.scss';
+@import './pages/about.scss';
