@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <div id="quotes-page">
       <Flag title="CITATIONS" subtitle="“Aucun de nous ne sait ce que nous savons tous, ensemble”" />
       <Quote :quote="quote" />

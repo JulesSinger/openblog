@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <Flag title="A PROPOS DE L'OPENBLOG" subtitle=""/>
 
     <div id="about-page">
@@ -35,13 +34,11 @@
 <script>
 
 import Flag from './helpers/Flag.vue'
-import Header from './header/Header.vue'
 export default {
   name: 'About',
 
   components: {
     Flag,
-    Header
   }
 
 }

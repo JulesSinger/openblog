@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <div id="article-page">
 
       <Flag title="DESIGN" subtitle="COMPREND LA DIFFERENCE UI/UX"/>
@@ -43,14 +42,12 @@
   </div>
 </template>
 <script>
-import Header from '../header/Header.vue'
 import Comment from './Comment.vue'
 import Flag from '../helpers/Flag.vue'
 export default {
   name: 'Article',
 
   components: {
-    Header,
     Comment,
     Flag
   },

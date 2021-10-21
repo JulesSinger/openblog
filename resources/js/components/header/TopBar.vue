@@ -1,14 +1,11 @@
 <template>
   <div class="top-bar">
-    <img class="logo" src="/images/others/logo_openblog.svg" alt="L'OpenBlog">
-    
+    <img v-if="darkMode" class="logo" src="/images/others/logo_openblog_dark.svg" alt="L'OpenBlog">
+    <img v-else class="logo" src="/images/others/logo_openblog.svg" alt="L'OpenBlog">
     <div class="top-bar-actions">
-      
-      <div id="theme-action">
-        <input class="container_toggle" type="checkbox" id="switch-theme" name="mode">
-        <label for="switch-theme">Toggle</label>
-      </div>
 
+      <DarkMode @toggleTheme="darkMode = !darkMode" />
+      
       <div id="auth-actions">
         <button class="btn btn-light">Inscription</button>
         <button class="btn btn-markup">Connexion</button>
@@ -33,7 +30,26 @@
   </div>
 </template>
 <script>
+import DarkMode from './DarkMode.vue'
+import { ref } from 'vue'
 export default {
-  name: 'TopBar'
+  name: 'TopBar',
+
+  components: {
+    DarkMode
+  },
+  
+  setup() {
+    const darkMode = ref(false)
+    if (!localStorage.getItem('preferredDarkMode') || localStorage.getItem('preferredDarkMode') == 'false') {
+      darkMode.value = false
+    } else {
+      darkMode.value = true
+    } 
+
+    return {
+      darkMode
+    }
+  },
 }
 </script>
