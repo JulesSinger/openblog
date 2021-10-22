@@ -2,7 +2,7 @@
   <div class="quote container">
     <div class="quote-header">
       <p>Posté le {{ quote.createdDate }} </p>
-      <button class="btn btn-light">COPIER</button>
+      <button class="btn" style="color: black">COPIER</button>
     </div>
 
     <div class="quote-container">

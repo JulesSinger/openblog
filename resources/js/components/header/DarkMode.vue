@@ -34,12 +34,10 @@ export default {
     }
 
     const darkAttrs = () => {
-      console.log(darkMode.value)
       if(darkMode.value) {
         document.documentElement.setAttribute('data-theme', 'dark')
         localStorage.setItem('preferredDarkMode', 'true')
       } else {
-        console.log("entry")
         document.documentElement.removeAttribute('data-theme')
         localStorage.setItem('preferredDarkMode', 'false')
       }
@@ -51,7 +49,6 @@ export default {
         darkAttrs()
         switchMode.value = false
       } else {
-        console.log('darmodeFalse')
         darkMode.value = false
         darkAttrs()
         switchMode.value = true
