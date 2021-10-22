@@ -44,3 +44,7 @@ Route::get('/account', function () {
 Route::get('/participate', function () {
     return view('base', ['title' => 'Écrire un article']);
 }); 
+
+Route::get('/categories', function () {
+    return view('base', ['title' => 'Catégories d\'article']);
+}); 
