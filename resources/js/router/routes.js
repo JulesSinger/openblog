@@ -30,7 +30,7 @@ export const routes = [
     path: '/about',
     name: 'About',
     component: About,
-    meta: { title: 'A Propos' }
+    meta: { title: 'À Propos' }
   },
   {
     path: '/login',
