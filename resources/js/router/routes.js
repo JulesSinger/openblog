@@ -4,6 +4,7 @@ import Quotes from '../components/quotes/Quotes.vue'
 import About from '../components/About.vue'
 import Login from '../components/authentification/Login.vue'
 import Register from '../components/authentification/Register.vue'
+import Account from '../components/Account.vue'
 
 export const routes = [
   {
@@ -41,5 +42,11 @@ export const routes = [
     name: 'Register',
     component: Register,
     meta: { title: 'Inscription' }
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    component: Account,
+    meta: { title: 'Mon Compte' }
   }
 ]

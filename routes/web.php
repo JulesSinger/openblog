@@ -36,3 +36,7 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('base', ['title' => 'Inscription']);
 }); 
+
+Route::get('/account', function () {
+    return view('base', ['title' => 'Mon compte']);
+}); 
