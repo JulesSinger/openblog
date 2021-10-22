@@ -7,8 +7,8 @@
       <DarkMode @toggleTheme="darkMode = !darkMode" />
       
       <div id="auth-actions">
-        <button class="btn btn-light">Inscription</button>
-        <button class="btn btn-markup">Connexion</button>
+        <router-link :to="{name: 'Register'}" class="btn btn-light">Inscription</router-link>
+        <router-link :to="{name: 'Login'}" class="btn btn-markup">Connexion</router-link>
       </div>
 
       <div id="networks-links">

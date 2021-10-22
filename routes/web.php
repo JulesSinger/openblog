@@ -28,3 +28,11 @@ Route::get('/about', function () {
 Route::get('/article', function () {
     return view('base', ['title' => 'Article']);
 }); 
+
+Route::get('/login', function () {
+    return view('base', ['title' => 'Connexion']);
+}); 
+
+Route::get('/register', function () {
+    return view('base', ['title' => 'Inscription']);
+}); 

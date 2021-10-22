@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header />
+        <Header v-if="routePath !='/register' && routePath !='/login'" />
         <div class="router">
             <RouterView name="default" class="router-view" />
         </div>
@@ -15,6 +15,12 @@ export default {
 
     components: {
         Header
+    },
+
+    computed: {
+        routePath() {
+            return this.$route.path
+        }
     }
 }
 </script>

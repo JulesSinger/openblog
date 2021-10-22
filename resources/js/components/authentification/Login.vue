@@ -1,0 +1,30 @@
+<template>
+  <div id="login-page" class="auth-page">
+    <h1>L'OpenBlog</h1>
+    <div class="container auth-container">
+      <h2>Connexion</h2>
+      <form action="">
+        <div class="form-container">
+          <label for="email">Adresse mail</label>
+          <input type="email" name="email" id="email" placeholder="mail@example.com">
+        </div>
+
+        <div class="form-container">
+          <label for="password">Mot de passe</label>
+          <input type="password" name="password" id="password" placeholder="*************">
+          <a href="">Mot de passe oublié ?</a>
+        </div>
+        <button type="submit" class="btn btn-markup">Continuer</button>
+      </form>
+
+      <p>Pas de compte ? <router-link :to="{ name: 'Register' }">Inscription</router-link></p>
+
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Login'
+}
+</script>
