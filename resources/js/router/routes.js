@@ -5,6 +5,7 @@ import About from '../components/About.vue'
 import Login from '../components/authentification/Login.vue'
 import Register from '../components/authentification/Register.vue'
 import Account from '../components/Account.vue'
+import Participate from '../components/Participate.vue'
 
 export const routes = [
   {
@@ -48,5 +49,11 @@ export const routes = [
     name: 'Account',
     component: Account,
     meta: { title: 'Mon Compte' }
+  },
+  {
+    path: '/participate',
+    name: 'Participate',
+    component: Participate,
+    meta: { title: 'Publier un article' }
   }
 ]

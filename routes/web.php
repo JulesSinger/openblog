@@ -40,3 +40,7 @@ Route::get('/register', function () {
 Route::get('/account', function () {
     return view('base', ['title' => 'Mon compte']);
 }); 
+
+Route::get('/participate', function () {
+    return view('base', ['title' => 'Écrire un article']);
+}); 
