@@ -10,9 +10,9 @@
 </template>
 <script>
 
-import Flag from '../helpers/Flag.vue'
+import Flag from '../../helpers/components/Flag.vue'
 import Quote from './Quote.vue'
-import Header from '../header/Header.vue'
+import Header from '../../header/components/Header.vue'
 export default {
   name: 'Quotes',
 

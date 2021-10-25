@@ -7,14 +7,14 @@
   </div>
 </template>
 <script>
-import ArticlePreview from './articles/ArticlePreview.vue'
-import Pagination from './helpers/Pagination.vue'
+import ArticlePreview from './articles/components/ArticlePreview.vue'
+import Pagination from './helpers/components/Pagination.vue'
 export default {
   name: 'Home',
 
   components: {
     ArticlePreview, 
     Pagination
-  }
+  },
 }
 </script>

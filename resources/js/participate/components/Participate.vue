@@ -24,7 +24,7 @@
 
 <script>
 
-import Flag from './helpers/Flag.vue'
+import Flag from '../../helpers/components/Flag.vue'
 
 export default {
   name: 'Participate',

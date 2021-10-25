@@ -19,12 +19,12 @@
         <div class="about-actions">
           <div class="action container" id="first-action">
             <p>Vous souhaitez publier un article ?</p>
-            <a href="./participate.html" class="btn btn-markup">J'y vais</a>
+            <router-link :to="{name: 'Participate' }" class="btn btn-markup">J'y vais</router-link>
           </div>
 
           <div class="action container">
             <p>Vous souhaitez lire nos articles ?</p>
-            <a class="btn btn-markup">C'est parti</a>
+            <router-link :to="{name: 'Home'}" class="btn btn-markup">C'est parti</router-link>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@
 </template>
 <script>
 
-import Flag from './helpers/Flag.vue'
+import Flag from '../../helpers/components/Flag.vue'
 export default {
   name: 'About',
 
