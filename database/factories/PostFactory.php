@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CategoryFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Category::class;
+    protected $model = Post::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +22,11 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word(),
-            'image' => $this->faker->imageUrl()
+            'category_id' => $this->faker->randomDigitNot(0),
+            'title' => $this->faker->sentence(),
+            'read_time' => $this->faker->randomDigit(),
+            'author' => $this->faker->name(),
+            'publication_date' => now(),
         ];
     }
 }
