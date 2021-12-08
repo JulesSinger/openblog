@@ -1,10 +1,10 @@
 
-#article-page {
+#post-page {
   & {
     margin: 3rem 0;
   }
 
-  .article-container {
+  .post-container {
     & {
       margin: auto;
       width: 50vw;
@@ -15,7 +15,7 @@
       margin: 0;
     }
 
-    .article-header {
+    .post-header {
       & {
         padding: 2rem 3rem;
         padding-bottom: 1rem;
@@ -25,7 +25,7 @@
         border-bottom: 3px solid var(--clr-primary);
       }
 
-      #article-category {
+      #post-category {
         color: var(--clr-markup);
         font-family: var(--font-bold);
       }
@@ -45,12 +45,12 @@
       }
     }
 
-    .article-main-content {
+    .post-main-content {
       & {
         padding: 2rem 3rem 0 3rem;
       }
 
-      #article-infos {
+      #post-infos {
         color: var(--clr-markup);
       }
 
@@ -70,7 +70,8 @@
           margin: auto;          
         }
         
-        textarea {
+        
+        textarea, input {
           margin-top: 1rem;
           width: 100%;
           display: block;
@@ -97,7 +98,7 @@
   }
 }
 
-.article-preview {
+.post-preview {
   & {
     display: flex;
     width: 60vw;
@@ -125,15 +126,15 @@
       margin: 0 0 0.75rem 0;
     }
 
-    .article-categorie {
+    .post-category {
       color: var(--clr-markup);
     }
 
-    .article-title {
+    .post-title {
       margin-bottom: 0.5rem;
     }
 
-    .article-details {
+    .post-details {
       margin : 0;
       color: var(--clr-markup);
     }
@@ -143,7 +144,7 @@
       margin: 0;
     }
 
-    .article-actions {
+    .post-actions {
       & {
         padding: 0;
         display: flex;
@@ -156,12 +157,12 @@
   }
 }
 
-.article-preview:hover {
+.post-preview:hover {
   transform: translateY(-10px);
 }
 
 @media all and (max-width: 1600px) {
-  .article-preview {
+  .post-preview {
     & {
       width: 70vw;
     }
@@ -170,7 +171,7 @@
 
 
 @media all and (max-width: 1400px) {
-  .article-preview {
+  .post-preview {
     & {
       width: 80vw;
     }
@@ -178,7 +179,7 @@
 }
 
 @media all and (max-width: 1200px) {
-  .article-preview {
+  .post-preview {
     & {
       width: 90vw;
     }
