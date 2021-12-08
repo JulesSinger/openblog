@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Header from './header/components/Header.vue'
+import Header from './components/header/Header.vue'
 export default {
     name: 'App',
 

@@ -1,7 +1,7 @@
 <template>
   <div class="quote container">
     <div class="quote-header">
-      <p>Posté le {{ quote.createdDate }} </p>
+      <p>Posté le {{ quote.created_at }} </p>
       <button class="btn" style="color: black">COPIER</button>
     </div>
 

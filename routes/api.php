@@ -3,7 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\QuoteController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,3 +17,8 @@ use App\Http\Controllers\CategoryController;
 */
 
 Route::get('categories', [CategoryController::class, 'index']);
+
+Route::get('quotes', [QuoteController::class, 'index']);
+
+Route::post('comment', [CommentController::class, 'store']);
+Route::get('post/{id}/comments', [CommentController::class, 'index']);

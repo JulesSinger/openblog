@@ -2,18 +2,19 @@
   <div id="categories-page">
     <Flag title="CATÉGORIES" subtitle="Choisissez parmi nos catégories d'articles" />
     <div class="categories-container">
-      <Category v-for="category in categories" :category="category" />
+      <Category v-for="category in categories" :category="category" :key="category.id" />
     </div>
   </div>
 </template>
 
 <script>
 
-import Flag from '../../helpers/components/Flag.vue'
+import Flag from '../helpers/Flag.vue'
 import Category from './Category.vue'
-import { useCategories } from '../model/categories'
+import { useCategories } from '../../api/categories'
+import { onMounted } from 'vue'
 
-export default {
+export default { 
   name: 'Categories',
   
   components: {
@@ -22,7 +23,8 @@ export default {
   },
 
   setup() {
-    let categories = useCategories()
+    const { categories, getCategories } = useCategories()
+    onMounted(getCategories())
 
     return {
       categories

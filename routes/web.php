@@ -25,7 +25,7 @@ Route::get('/about', function () {
     return view('base', ['title' => 'A Propos']);
 }); 
 
-Route::get('/article', function () {
+Route::get('/post/{id}', function () {
     return view('base', ['title' => 'Article']);
 }); 
 
@@ -48,3 +48,7 @@ Route::get('/participate', function () {
 Route::get('/categories', function () {
     return view('base', ['title' => 'Catégories d\'article']);
 }); 
+
+Route::get('/tutorials', function () {
+    return view('base', ['title' => 'Tuto infos']);
+});

@@ -1,13 +1,13 @@
-import Home from '../Home.vue'
-import Article from '../articles/components/Article.vue'
-import Quotes from '../quotes/components/Quotes.vue'
-import About from '../about/components/About.vue'
-import Login from '../authentification/components/Login.vue'
-import Register from '../authentification/components/Register.vue'
-import Account from '../profil/components/Account.vue'
-import Participate from '../participate/components/Participate.vue'
-import Categories from '../Categories/components/Categories.vue'
-
+import Home from '../components/Home.vue'
+import Post from '../components/posts/Post.vue'
+import Quotes from '../components/quotes/Quotes.vue'
+import About from '../components/about/About.vue'
+import Login from '../components/authentification/Login.vue'
+import Register from '../components/authentification/Register.vue'
+import Account from '../components/profil/Account.vue'
+import Participate from '../components/participate/Participate.vue'
+import Categories from '../components/categories/Categories.vue'
+import Tutos from '../components/categories/tutos.vue'
 export const routes = [
   {
     path: '/',
@@ -16,9 +16,9 @@ export const routes = [
     meta: { title: 'Accueil' }
   },
   {
-    path: '/article',
-    name: 'Article',
-    component: Article,
+    path: '/post/:id',
+    name: 'Post',
+    component: Post,
     meta: { title: 'Article' }
   },
   {
@@ -62,5 +62,11 @@ export const routes = [
     name: 'Categories',
     component: Categories,
     meta: { title: 'Catégories d\'article' }
+  },
+  {
+    path: '/tutorials',
+    name: 'Tutoriels informatique',
+    component: Tutos,
+    meta: { title: 'Tutoriels informatique' }
   }
 ]
