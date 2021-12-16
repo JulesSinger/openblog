@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\CommentResource;
 class CommentController extends Controller
 {
 
@@ -15,7 +15,7 @@ class CommentController extends Controller
      */
     public function index($id)
     {
-        return Comment::where('post_id', $id)->get();
+        return CommentResource::collection(Comment::where('post_id', $id)->get());
     }
 
     /**
