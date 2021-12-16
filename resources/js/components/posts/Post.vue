@@ -32,8 +32,8 @@
   </div>
 </template>
 <script>
-import Comments from './comments/Comments.vue'
-import CommentCreate from './comments/CommentCreate.vue'
+import Comments from '../comments/Comments.vue'
+import CommentCreate from '../comments/CommentCreate.vue'
 import Flag from '../helpers/Flag.vue'
 export default {
   name: 'Post',

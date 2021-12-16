@@ -10,7 +10,7 @@
 </template>
 <script>
 import { reactive } from 'vue'
-import { useComments } from '../../../api/posts.js'
+import { useComments } from '../../api/comments.js'
 import { useRoute } from 'vue-router'
 export default {
     name: 'CommentCreate',

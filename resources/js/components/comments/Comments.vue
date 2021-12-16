@@ -5,7 +5,7 @@
 </template>
 <script>
 import Comment from './Comment.vue';
-import useComments from '../../../api/posts.js'
+import useComments from '../../api/comments.js'
 import { useRoute } from 'vue-router'
 import { onMounted } from 'vue'
 export default {
