@@ -20,6 +20,10 @@
           justify-content: space-between;
           background-color: var(--clr-markup);
         }
+        
+        .created_at {
+          color: var(--clr-contrast)
+        }
   
         button {
           width: 6rem;

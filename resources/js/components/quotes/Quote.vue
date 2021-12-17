@@ -1,7 +1,7 @@
 <template>
   <div class="quote container">
     <div class="quote-header">
-      <p>Posté le {{ quote.created_at }} </p>
+      <p class="created_at">Posté le {{ quote.created_at }} </p>
       <button class="btn" style="color: black" @click.prevent="copyQuote(quote.content, quote.author)">COPIER</button>
     </div>
 
