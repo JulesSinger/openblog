@@ -26,6 +26,12 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'content' => 'required',
+            'subject' => 'required',
+            'post_id' => 'required'
+        ]);
+        
         $content = $request->input('content');
         $post_id = $request->input('post_id');
         $subject = $request->input('subject');
