@@ -27,6 +27,8 @@ class PostFactory extends Factory
             'read_time' => $this->faker->randomDigit(),
             'author' => $this->faker->name(),
             'publication_date' => now(),
+            'image' => $this->faker->imageUrl(),
+            'summary' => $this->faker->realText(100),
         ];
     }
 }

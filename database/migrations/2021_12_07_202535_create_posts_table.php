@@ -20,7 +20,9 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->integer('read_time');
             $table->string('author');
-            $table->date('publication_date');
+            $table->string('image');
+            $table->mediumText('summary');
+            $table->timestamp('publication_date');
             $table->timestamps();
         });
     }

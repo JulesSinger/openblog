@@ -1,20 +1,25 @@
 <template>
-  <router-link :to="{name: 'Post', params: { id: 1 }}">
+  <router-link class="global-link" style="" :to="{name: 'Post', params: { id: post.id }}">
     <div class="container post-preview">
-      <img src="/images/others/code.jpg" alt="code">
+      <img :src="post.image" alt="code">
       <div>
-        <h2 class="post-category">Catégorie de l'article</h2>
-        <h2 class="post-title">Titre de l'article</h2>
-        <p class="post-details">07/12/2020 | 9 mins | Singer Jules</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam nam nostrum minus iure impedit quis quasi magnam aperiam non nulla at ab, id, laborum recusandae libero sed dignissimos quibusdam odio?
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, sapiente quod cumque unde temporibus fugit.
-        </p>
+        <h2 class="post-category">{{ post.category.name }}</h2>
+        <h2 class="post-title">{{ post.title }}</h2>
+        <p class="post-details"> {{ post.publication_date }} | {{ post.read_time }} mins | {{ post.author }}</p>
+        <p>{{ post.summary }}</p>
       </div>
     </div>
   </router-link>
 </template>
 <script>
 export default {
-  name: 'PostPreview'
+  name: 'PostPreview',
+
+  props: {
+    post: {
+      type: Object,
+      required: true
+    },
+  }
 }
 </script>

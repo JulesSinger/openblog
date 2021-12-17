@@ -1,14 +1,17 @@
 <template>
   <div id="home-page">
-    <PostPreview />
-    <PostPreview />
-    <PostPreview />
-    <Pagination />
+    <PostPreview v-for="post in posts" :post='post'  />
+    <Pagination v-if="pagination" :pagination="pagination" />
+    {{ pagination }}
+
   </div>
 </template>
 <script>
 import PostPreview from './posts/PostPreview.vue'
 import Pagination from './helpers/Pagination.vue'
+import { usePost } from '../api/posts.js'
+import { onMounted } from 'vue'
+
 export default {
   name: 'Home',
 
@@ -16,5 +19,15 @@ export default {
     PostPreview, 
     Pagination
   },
+
+  data () {
+    const { posts, pagination, getPosts } = usePost()
+    onMounted(getPosts())
+
+    return {
+      posts,
+      pagination
+    }
+  }
 }
 </script>
