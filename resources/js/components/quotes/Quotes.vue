@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <div id="quotes-page">
-      <Flag title="CITATIONS" subtitle="“Aucun de nous ne sait ce que nous savons tous, ensemble”" />
-      <div v-for="quote in quotes" :key="quote.id"> 
-        <Quote :quote="quote" />
-      </div>
+  <div id="quotes-page">
+    <Flag title="CITATIONS" subtitle="“Aucun de nous ne sait ce que nous savons tous, ensemble”" />
+    <div class="quotes-container" > 
+      <Quote v-for="quote in quotes" :key="quote.id" :quote="quote" />
     </div>
   </div>
 </template>
