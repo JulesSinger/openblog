@@ -11,7 +11,7 @@ class PostController extends Controller
      /**
      * Display a specific post
      *
-     * @return Array
+     * @return array
      */
     public function index($id)
     {
@@ -21,7 +21,7 @@ class PostController extends Controller
     /**
      * Display a listing of the posts
      *
-     * @return Array
+     * @return array
      */
     public function list()
     {

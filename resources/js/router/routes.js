@@ -7,6 +7,7 @@ import Register from '../components/authentification/Register.vue'
 import Account from '../components/profil/Account.vue'
 import Participate from '../components/participate/Participate.vue'
 import Categories from '../components/categories/Categories.vue'
+import Category from '../components/categories/Category.vue'
 import Tutos from '../components/categories/tutos.vue'
 export const routes = [
   {
@@ -62,6 +63,12 @@ export const routes = [
     name: 'Categories',
     component: Categories,
     meta: { title: 'Catégories d\'article' }
+  },
+  {
+    path: '/categories/:id',
+    name: 'Category',
+    component: Category,
+    meta: { title: 'Categorie' }
   },
   {
     path: '/tutorials',

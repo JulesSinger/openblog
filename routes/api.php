@@ -18,13 +18,17 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('categories', [CategoryController::class, 'index']);
+// Category routes
+Route::get('categories', [CategoryController::class, 'list']);
+Route::get('categories/{id}', [CategoryController::class, 'index']);
 
+// Quote routes
 Route::get('quotes', [QuoteController::class, 'index']);
 
 // Post routes
 Route::get('posts', [PostController::class, 'list']);
 Route::get('posts/{id}', [PostController::class, 'index']);
+
 // Comment routes
 Route::post('comment', [CommentController::class, 'store']);
 Route::get('post/{id}/comments', [CommentController::class, 'index']);

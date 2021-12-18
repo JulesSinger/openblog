@@ -1,5 +1,5 @@
 <template>
-  <router-link class="global-link" style="" :to="{name: 'Post', params: { id: post.id }}">
+  <router-link class="post-preview-global-link" :to="{name: 'Post', params: { id: post.id }}">
     <div class="container post-preview">
       <img :src="post.image" alt="code">
       <div>

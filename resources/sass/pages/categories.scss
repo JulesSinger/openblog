@@ -12,31 +12,33 @@
       justify-content: center;
     }
 
-    .category {
-      & {
-        text-align: center;
-        max-width: 25vw;
-        box-shadow: var(--shadow-main);
-        transition: transform 0.3s;
-      }
-
-      img {
-        width: 100%;
-      }
-
-      .category-infos {
+    .category-preview-container-link {
+      .category-preview {
         & {
-          background-color: var(--clr-secondary);
-          padding: 1rem;
+          text-align: center;
+          max-width: 30vw;
+          box-shadow: var(--shadow-main);
+          transition: transform 0.3s;
         }
-
-        h1 {
-          margin: 0
+  
+        img {
+          width: 100%;
+        }
+  
+        .category-preview-infos {
+          & {
+            background-color: var(--clr-secondary);
+            padding: 1rem;
+          }
+  
+          h1 {
+            margin: 0
+          }
         }
       }
     }
 
-    .category:hover {
+    .category-preview:hover {
       transform: translateY(-10px);
     }
   }

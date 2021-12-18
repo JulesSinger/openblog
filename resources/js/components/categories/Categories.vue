@@ -2,7 +2,7 @@
   <div id="categories-page">
     <Flag title="CATÉGORIES" subtitle="Choisissez parmi nos catégories d'articles" />
     <div class="categories-container">
-      <Category v-for="category in categories" :category="category" :key="category.id" />
+      <CategoryPreview v-for="category in categories" :category="category" :key="category.id" />
     </div>
   </div>
 </template>
@@ -10,7 +10,7 @@
 <script>
 
 import Flag from '../helpers/Flag.vue'
-import Category from './Category.vue'
+import CategoryPreview from './CategoryPreview.vue'
 import { useCategories } from '../../api/categories'
 import { onMounted } from 'vue'
 
@@ -19,7 +19,7 @@ export default {
   
   components: {
     Flag,
-    Category,
+    CategoryPreview,
   },
 
   setup() {

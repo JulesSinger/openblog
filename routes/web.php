@@ -49,6 +49,10 @@ Route::get('/categories', function () {
     return view('base', ['title' => 'Catégories d\'article']);
 }); 
 
+Route::get('categories/{id}', function () {
+    return view('base', ['title' => 'Catégorie']);
+});
+
 Route::get('/tutorials', function () {
     return view('base', ['title' => 'Tuto infos']);
 });

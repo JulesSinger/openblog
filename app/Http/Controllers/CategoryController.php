@@ -9,11 +9,21 @@ use App\Http\Resources\CategoryResource;
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a specific category.
      *
-     * @return \Illuminate\Http\Response
+     * @return array
      */
-    public function index()
+    public function index($category_id)
+    {
+        return CategoryResource::collection(Category::where('id', $category_id)->get());
+    }
+
+    /**
+     * Display a listing of the categories
+     *
+     * @return array
+     */
+    public function list()
     {
         return CategoryResource::collection(Category::all());
     }
