@@ -15,8 +15,6 @@ class CategoryControllerTest extends TestCase
     public function itListsCategories()
     {
         $response = $this->get('/api/categories');
-
         $response->assertOk();
-        $this->assertCount(10, $response->json('data'));
     }
 }

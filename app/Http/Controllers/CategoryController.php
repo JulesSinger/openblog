@@ -18,6 +18,13 @@ class CategoryController extends Controller
         return CategoryResource::collection(Category::where('id', $category_id)->get());
     }
 
+    
+
+    public function test()
+    {
+        return CategoryResource::collection(Category::all());
+    }
+
     /**
      * Display a listing of the categories
      *
@@ -37,6 +44,8 @@ class CategoryController extends Controller
     {
         //
     }
+
+    
 
     /**
      * Store a newly created resource in storage.

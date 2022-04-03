@@ -3,25 +3,25 @@
     <h1>L'OpenBlog</h1>
     <div class="container auth-container">
       <h2>Inscription</h2>
-      <form action="">
+      <form @submit.prevent="register">
         <div class="form-container">
-          <label for="name">Nom Prénom</label>
-          <input type="name" name="name" id="name" placeholder="Ecrivez votre nom">
+          <label for="pseudo">Nom Prénom</label>
+          <input type="name" name="pseudo" id="pseudo" placeholder="Ecrivez votre nom" v-model='register_form.pseudo'>
         </div>
 
         <div class="form-container">
           <label for="email">Adresse mail</label>
-          <input type="email" name="email" id="email" placeholder="mail@example.com">
+          <input type="email" name="email" id="email" placeholder="mail@example.com" v-model='register_form.email'>
         </div>
 
         <div class="form-container">
           <label for="password">Mot de passe</label>
-          <input type="password" name="password" id="password" placeholder="*************">
+          <input type="password" name="password" id="password" placeholder="*************" v-model='register_form.password'>
         </div>
 
         <div class="form-container">
           <label for="password">Confirmez le mot de passe</label>
-          <input type="password" name="password" id="password" placeholder="*************">
+          <input type="password" name="password" id="password" placeholder="*************" v-model='register_form.password_confirmation'>
           <a href="">Mot de passe oublié ?</a>
         </div>
 
@@ -33,8 +33,33 @@
     </div>
   </div>
 </template>
+
+
 <script>
+import  { reactive } from 'vue'
+import { useAuth } from '../../api/auth.js'
+import { useRouter } from 'vue-router'
 export default {
-  name: 'Register'
+  name: 'Register',
+
+  setup() {
+    const router = useRouter()
+
+    const register_form = reactive({
+      pseudo: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+    })
+
+    const { registerWithCredentials } = useAuth(register_form)
+
+    return {
+      register_form,
+      register : () => {
+        registerWithCredentials(() => router.push({ name: 'Home' }))
+      }
+    }
+  }
 }
 </script>

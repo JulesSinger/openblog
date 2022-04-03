@@ -3,15 +3,15 @@
     <h1>L'OpenBlog</h1>
     <div class="container auth-container">
       <h2>Connexion</h2>
-      <form action="">
+      <form @submit.prevent='login' action="">
         <div class="form-container">
           <label for="email">Adresse mail</label>
-          <input type="email" name="email" id="email" placeholder="mail@example.com">
+          <input type="email" name="email" id="email" placeholder="mail@example.com" v-model="login_form.email">
         </div>
 
         <div class="form-container">
           <label for="password">Mot de passe</label>
-          <input type="password" name="password" id="password" placeholder="*************">
+          <input type="password" name="password" id="password" placeholder="*************" v-model="login_form.password">
           <a href="">Mot de passe oublié ?</a>
         </div>
         <button type="submit" class="btn btn-markup">Continuer</button>
@@ -24,7 +24,29 @@
 </template>
 
 <script>
+
+import  { reactive } from 'vue'
+import { useAuth } from '../../api/auth.js'
+import { useRouter } from 'vue-router'
 export default {
-  name: 'Login'
+  name: 'Login',
+
+  setup() {
+    const router = useRouter()
+
+    const login_form = reactive({
+      email:'',
+      password:'',
+    })
+
+    const { loginWithCredentials } = useAuth(login_form)
+
+    return {
+      login_form,
+      login: () => {
+        loginWithCredentials(() => router.push({ name: 'Home' }))
+      }
+    }
+  }
 }
 </script>

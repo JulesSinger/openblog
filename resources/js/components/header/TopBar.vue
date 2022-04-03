@@ -3,7 +3,7 @@
     <img v-if="darkMode" class="logo" src="/images/others/logo_openblog_dark.svg" alt="L'OpenBlog">
     <img v-else class="logo" src="/images/others/logo_openblog.svg" alt="L'OpenBlog">
     <div class="top-bar-actions">
-
+      {{ user }}
       <DarkMode @toggleTheme="darkMode = !darkMode" />
       
       <div id="auth-actions">
@@ -32,6 +32,8 @@
 <script>
 import DarkMode from './DarkMode.vue'
 import { ref } from 'vue'
+import { onMounted  } from 'vue'
+import { getCurrentUser, user } from '../../api/auth.js'
 export default {
   name: 'TopBar',
 
@@ -47,8 +49,11 @@ export default {
       darkMode.value = true
     } 
 
+    onMounted(getCurrentUser())
+
     return {
-      darkMode
+      darkMode,
+      user
     }
   },
 }
