@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Firebase\JWT\JWT;
-use Illuminate\Cookie\CookieJar;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -31,6 +28,10 @@ class AuthController extends Controller
                 'token' => $user->createToken(time())->plainTextToken
             ]);
         }
+
+        return response()->json([
+            'test' => 'test'
+        ]);
     }
 
       /**
@@ -92,18 +93,5 @@ class AuthController extends Controller
         /** @var User */
         //$user = Auth::user();
         return 'salut test';
-    }
-
-    /**
-     * Generate the cookie token
-     *
-     * @param integer $user_id
-     * @return Cookie|CookieJar
-     */
-    private function generateCookie(int $user_id)
-    {
-        return cookie('auth_token', JWT::encode([
-            'user_id' => $user_id
-        ], env('APP_KEY')), 0, null, null, env('APP_ENV') === 'production', true);
     }
 }

@@ -20,11 +20,11 @@ use App\Http\Controllers\AuthController;
 
 // Authentication routes
 
-Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
-Route::post('/register', [AuthController::class, 'register'])->middleware('guest');
-Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::get('/me', 'AuthController@me');
+Route::get('/me', [AuthController::class, 'me']);
 
 
 // Category routes
