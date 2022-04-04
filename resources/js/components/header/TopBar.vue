@@ -3,12 +3,20 @@
     <img v-if="darkMode" class="logo" src="/images/others/logo_openblog_dark.svg" alt="L'OpenBlog">
     <img v-else class="logo" src="/images/others/logo_openblog.svg" alt="L'OpenBlog">
     <div class="top-bar-actions">
-      {{ user }}
+      <div v-if="token && user">
+        {{user}}
+      </div>
+      
       <DarkMode @toggleTheme="darkMode = !darkMode" />
       
-      <div id="auth-actions">
+      <div id="auth-actions" v-if="!token">
         <router-link :to="{name: 'Register'}" class="btn btn-light">Inscription</router-link>
         <router-link :to="{name: 'Login'}" class="btn btn-markup">Connexion</router-link>
+      </div>
+
+      <div id="account-actions" v-else>
+        <router-link :to="{name: 'Account'}" class="btn btn-link"><img src="/images/icons/man-user.svg" alt="user"></router-link>
+        <router-link :to="{name: 'Home'}" class="btn btn-link" @click="logout"><img src="/images/icons/logout.png" alt="logout"></router-link>
       </div>
 
       <div id="networks-links">
@@ -26,21 +34,19 @@
         </div>
       </div>
     </div>
-    
   </div>
 </template>
 <script>
 import DarkMode from './DarkMode.vue'
-import { ref } from 'vue'
-import { onMounted  } from 'vue'
-import { getCurrentUser, user } from '../../api/auth.js'
+import { ref, computed} from 'vue'
+import store from '../../store'
 export default {
   name: 'TopBar',
 
   components: {
     DarkMode
   },
-  
+
   setup() {
     const darkMode = ref(false)
     if (!localStorage.getItem('preferredDarkMode') || localStorage.getItem('preferredDarkMode') == 'false') {
@@ -49,11 +55,11 @@ export default {
       darkMode.value = true
     } 
 
-    onMounted(getCurrentUser())
-
     return {
       darkMode,
-      user
+      token: computed(() => store.state.user.token),
+      user: computed(() => store.state.user.data),
+      logout: () => store.dispatch('logout')
     }
   },
 }

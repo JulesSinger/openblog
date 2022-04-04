@@ -39,6 +39,7 @@
 import  { reactive } from 'vue'
 import { useAuth } from '../../api/auth.js'
 import { useRouter } from 'vue-router'
+import store from '../../store'
 export default {
   name: 'Register',
 
@@ -57,7 +58,11 @@ export default {
     return {
       register_form,
       register : () => {
-        registerWithCredentials(() => router.push({ name: 'Home' }))
+        registerWithCredentials((response) => {
+          store.state.user.token = response.data.token;
+          store.state.user.data  = response.data.user;
+          router.push({ name: 'Home' })
+        })
       }
     }
   }

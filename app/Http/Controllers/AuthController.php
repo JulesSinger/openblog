@@ -25,6 +25,7 @@ class AuthController extends Controller
 
         if (Hash::check($request->password, $user->password)) {
             return response()->json([
+                'user' => $user,
                 'token' => $user->createToken(time())->plainTextToken
             ]);
         }
@@ -43,33 +44,22 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $payload = $request->only(['email', 'pseudo', 'password', 'password_confirmation']);
-
-        $validator = Validator::make($payload, [
-            'email' => 'required|email|max:255|unique:users,email',
-            'pseudo' => 'required|min:1|max:255',
-            'password' => 'required|min:4|max:255|confirmed',
-        ]);
-
-        if ($validator->fails()) {
-            return response()
-                ->json(['errors' => $this->getValidationErrors($validator)], 400);
-        }
-
+    
         // Store new user
         $user = new User();
-        $user->email = $payload['email'];
-        $user->pseudo = $payload['pseudo'];
-        $user->password = Hash::make($payload['password']);
+        $user->email = $request->email;
+        $user->pseudo = $request->pseudo;
+        $user->password = Hash::make($request->password);
         $user->save();
 
         // Log in the new user
         Auth::login($user);
 
         // Response
-        $cookie = $this->generateCookie(Auth::id());
-        return response()
-            ->json(Auth::getUser())
-            ->withCookie($cookie);
+        return response()->json([
+            'user' => $user,
+            'token' => $user->createToken(time())->plainTextToken
+        ]);
     }
 
     /**
@@ -91,7 +81,7 @@ class AuthController extends Controller
     public function me()
     {
         /** @var User */
-        //$user = Auth::user();
-        return 'salut test';
+        $user = Auth::user();
+        return $user;
     }
 }

@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { ref } from 'vue'
+import axios from 'axios'
 
 export default function useAuth(form = null) {
   const loginWithCredentials = async (onSuccess = null) => {
@@ -11,13 +10,12 @@ export default function useAuth(form = null) {
         },
       })
     .then((response) => {
-      console.log(response)
       if (onSuccess !== null) return onSuccess(response)
     })
   } 
 
   const registerWithCredentials = async (onSuccess = null) => {
-    await axios.post('/api/auth/register', form,
+    await axios.post('/api/register', form,
       {
         headers: {
           'Accept': 'application/json',
@@ -35,20 +33,6 @@ export default function useAuth(form = null) {
   }
 }
 
-const user = ref([]) 
-
-const getCategory = async () => {
-  let response = await axios.get(`/api/categories/${category_id}`)
-  category.value = response.data.data[0]
-}
-
-const getCurrentUser = async () => {
-  let response = await axios.get(`/api/me`)
-  user.value = response
-}
-
 export {
   useAuth,
-  user, 
-  getCurrentUser
 }
