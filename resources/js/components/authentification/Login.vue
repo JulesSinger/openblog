@@ -14,6 +14,11 @@
           <input type="password" name="password" id="password" placeholder="*************" v-model="login_form.password">
           <a href="">Mot de passe oublié ?</a>
         </div>
+
+        <div v-if="errors" class="alert-error">
+          {{ errors }}
+        </div>
+        
         <button type="submit" class="btn btn-markup">Continuer</button>
       </form>
 
@@ -41,7 +46,7 @@ export default {
       password:'',
     })
 
-    const { loginWithCredentials } = useAuth(login_form)
+    const { loginWithCredentials, errors } = useAuth(login_form)
 
     return {
       login_form,
@@ -51,7 +56,8 @@ export default {
           store.state.user.data  = response.data.user;
           router.push({ name: 'Home' })
         })
-      }
+      },
+      errors
     }
   }
 }

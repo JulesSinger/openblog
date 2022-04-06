@@ -21,6 +21,11 @@ class AuthController extends Controller
     public function login(Request $request): JsonResponse
     {
 
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
         $user = User::where('email', $request->email)->first();
 
         if (Hash::check($request->password, $user->password)) {
@@ -43,6 +48,14 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+            'password_confirmed' => 'required',
+            'pseudo' => 'required'
+        ]);
+
         $payload = $request->only(['email', 'pseudo', 'password', 'password_confirmation']);
     
         // Store new user

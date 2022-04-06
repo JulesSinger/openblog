@@ -5,7 +5,7 @@
       <h2>Inscription</h2>
       <form @submit.prevent="register">
         <div class="form-container">
-          <label for="pseudo">Nom Prénom</label>
+          <label for="pseudo">Pseudo</label>
           <input type="name" name="pseudo" id="pseudo" placeholder="Ecrivez votre nom" v-model='register_form.pseudo'>
         </div>
 
@@ -19,10 +19,13 @@
           <input type="password" name="password" id="password" placeholder="*************" v-model='register_form.password'>
         </div>
 
-        <div class="form-container">
+        <div class="form-container" style="margin-bottom: 1rem">
           <label for="password">Confirmez le mot de passe</label>
           <input type="password" name="password" id="password" placeholder="*************" v-model='register_form.password_confirmation'>
-          <a href="">Mot de passe oublié ?</a>
+        </div>
+
+        <div v-if="errors" class="alert-error">
+          {{ errors }}
         </div>
 
         <button type="submit" class="btn btn-markup">Continuer</button>
@@ -53,7 +56,7 @@ export default {
       password_confirmation: '',
     })
 
-    const { registerWithCredentials } = useAuth(register_form)
+    const { registerWithCredentials, errors } = useAuth(register_form)
 
     return {
       register_form,
@@ -63,7 +66,8 @@ export default {
           store.state.user.data  = response.data.user;
           router.push({ name: 'Home' })
         })
-      }
+      },
+      errors
     }
   }
 }
