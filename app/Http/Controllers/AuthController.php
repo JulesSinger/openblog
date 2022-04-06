@@ -36,8 +36,8 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'test' => 'test'
-        ]);
+            'error' => 'invalid credentials'
+        ], 401);
     }
 
       /**
@@ -52,49 +52,32 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required',
             'password' => 'required',
-            'password_confirmed' => 'required',
+            'password_confirmation' => 'required',
             'pseudo' => 'required'
         ]);
 
-        $payload = $request->only(['email', 'pseudo', 'password', 'password_confirmation']);
-    
-        // Store new user
+        if ($request->password !== $request->password_confirmation) {
+            return response()->json([
+                'error' => 'password fields don\'t match'
+            ], 401);
+        }
+        
+        $user_exist = User::where('email', '=', $request->email)->first();
+
+        if ($user_exist !== null) {
+            return response()->json([
+                'error' => 'an account with this email already exists'
+            ], 409);
+        }      
+
         $user = new User();
         $user->email = $request->email;
         $user->pseudo = $request->pseudo;
         $user->password = Hash::make($request->password);
-        $user->save();
 
-        // Log in the new user
-        Auth::login($user);
-
-        // Response
         return response()->json([
             'user' => $user,
             'token' => $user->createToken(time())->plainTextToken
         ]);
-    }
-
-    /**
-     * Log out the user
-     *
-     * @return Response
-     */
-    public function logout()
-    {
-        Auth::logout();
-        return response()->json()->withCookie(cookie('auth_token', null, -1));
-    }
-
-    /**
-     * Get informations about the current user
-     *
-     * @return Response
-     */
-    public function me()
-    {
-        /** @var User */
-        $user = Auth::user();
-        return $user;
     }
 }
