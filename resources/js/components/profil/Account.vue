@@ -1,9 +1,8 @@
 <template>
   <div id="account-page">
     <div class="container account-container">
-      <p><strong>Nom :</strong> xxxx</p>
-      <p><strong>Prénom :</strong> xxxx</p>
-      <p><strong>Adresse mail :</strong> xxx.xxx@gmail.com</p>
+      <p><strong>Pseudo :</strong> {{ user.pseudo }}</p>
+      <p><strong>Adresse mail :</strong> {{ user.email }} </p>
       <div class="actions">
         <a href="" class="btn btn-link">Mes articles favoris</a>
         <button class="btn btn-markup">Modifier</button>
@@ -13,7 +12,13 @@
 </template>
 
 <script>
+
+import store from '../../store'
 export default {
-  name: 'Account'
+  name: 'Account',
+
+  setup () {
+    return { user : store.state.user.data }
+  }
 }
 </script>
