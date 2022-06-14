@@ -74,6 +74,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->pseudo = $request->pseudo;
         $user->password = Hash::make($request->password);
+        $user->save();
 
         return response()->json([
             'user' => $user,
@@ -81,3 +82,5 @@ class AuthController extends Controller
         ]);
     }
 }
+
+

@@ -50,7 +50,7 @@ export const routes = [
     path: '/account',
     name: 'Account',
     component: Account,
-    meta: { title: 'Mon Compte' }
+    meta: { title: 'Mon Compte', requiresAuth: true }
   },
   {
     path: '/participate',
