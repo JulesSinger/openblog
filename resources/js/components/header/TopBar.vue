@@ -3,9 +3,6 @@
     <img v-if="darkMode" class="logo" src="/images/others/logo_openblog_dark.svg" alt="L'OpenBlog">
     <img v-else class="logo" src="/images/others/logo_openblog.svg" alt="L'OpenBlog">
     <div class="top-bar-actions">
-      <div v-if="token && user">
-        {{user}}
-      </div>
       
       <DarkMode @toggleTheme="darkMode = !darkMode" />
       
@@ -15,6 +12,7 @@
       </div>
 
       <div id="account-actions" v-else>
+        <router-link v-if="is_admin==1" :to="{name: 'AdminPanel'}" class="btn btn-markup">Panel Admin</router-link>
         <router-link :to="{name: 'Account'}" class="btn btn-link"><img src="/images/icons/man-user.svg" alt="user"></router-link>
         <router-link :to="{name: 'Home'}" class="btn btn-link" @click="logout"><img src="/images/icons/logout.png" alt="logout"></router-link>
       </div>
@@ -38,7 +36,7 @@
 </template>
 <script>
 import DarkMode from './DarkMode.vue'
-import { ref, computed} from 'vue'
+import { ref, computed, onMounted} from 'vue'
 import store from '../../store'
 export default {
   name: 'TopBar',
@@ -55,11 +53,18 @@ export default {
       darkMode.value = true
     } 
 
+    const getRole = async () => {
+      store.dispatch('getUserRole');
+    }
+
+    onMounted(getRole());
+
     return {
       darkMode,
       token: computed(() => store.state.user.token),
       user: computed(() => store.state.user.data),
-      logout: () => store.dispatch('logout')
+      logout: () => store.dispatch('logout'),
+      is_admin: computed(() => store.state.user.role),
     }
   },
 }

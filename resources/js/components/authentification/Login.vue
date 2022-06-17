@@ -54,6 +54,7 @@ export default {
         loginWithCredentials((response) => {
           store.state.user.token = response.data.token;
           store.state.user.data  = response.data.user;
+          localStorage.setItem('auth_token', store.state.user.token)
           router.push({ name: 'Home' })
         })
       },

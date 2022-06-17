@@ -53,6 +53,6 @@ Route::get('categories/{id}', function () {
     return view('base', ['title' => 'Catégorie']);
 });
 
-Route::get('/tutorials', function () {
-    return view('base', ['title' => 'Tuto infos']);
+Route::get('/admin', function () {
+    return view('base', ['title' => 'Panel d\'administration']);
 });

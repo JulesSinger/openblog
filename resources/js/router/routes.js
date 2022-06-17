@@ -8,7 +8,7 @@ import Account from '../components/profil/Account.vue'
 import Participate from '../components/participate/Participate.vue'
 import Categories from '../components/categories/Categories.vue'
 import Category from '../components/categories/Category.vue'
-import Tutos from '../components/categories/tutos.vue'
+import AdminPanel from '../components/admin/AdminPanel.vue'
 export const routes = [
   {
     path: '/',
@@ -71,9 +71,9 @@ export const routes = [
     meta: { title: 'Categorie' }
   },
   {
-    path: '/tutorials',
-    name: 'Tutoriels informatique',
-    component: Tutos,
-    meta: { title: 'Tutoriels informatique' }
+    path: '/admin',
+    name: 'AdminPanel',
+    component: AdminPanel,
+    meta: { title: 'Panel Administration', requiresAdmin: true }
   }
 ]
