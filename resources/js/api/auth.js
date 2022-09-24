@@ -17,7 +17,7 @@ export default function useAuth(form = null) {
       if (onSuccess !== null) return onSuccess(response)
     })
     .catch((error) => {
-      errors.value = ''
+        errors.value = ''
 
       switch (error.response.status) {
         case 422: // erreurs de champs (champ vide ..)
@@ -33,7 +33,6 @@ export default function useAuth(form = null) {
           errors.value += 'email ou mot de passe invalide'
           break;
       }
-      
     })
   } 
 

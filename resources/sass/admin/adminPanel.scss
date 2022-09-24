@@ -1,0 +1,23 @@
+#admin-home-page {
+  #admin-menu {
+    & {
+      display: grid;
+      width: 90vw;
+      margin: 0 auto;
+      text-align: center;
+      grid-template-columns: 33% 33% 33%;
+      padding: 1rem;
+    }
+
+    .admin-menu-item {
+      background-color: var(--clr-primary);
+      margin: 1rem 1rem;
+      padding: 3rem;
+      transition: all 0.3s;
+    }
+
+    .admin-menu-item:hover {
+      transform: translateY(-10px);
+    }
+  }
+}
