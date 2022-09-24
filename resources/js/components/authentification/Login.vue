@@ -3,7 +3,7 @@
     <h1>L'OpenBlog</h1>
     <div class="container auth-container">
       <h2>Connexion</h2>
-      <form @submit.prevent='login' action="">
+      <form @submit.prevent='login'>
         <div class="form-container">
           <label for="email">Adresse mail</label>
           <input type="email" name="email" id="email" placeholder="mail@example.com" v-model="login_form.email">
@@ -52,9 +52,8 @@ export default {
       login_form,
       login: () => {
         loginWithCredentials((response) => {
-          store.state.user.token = response.data.token;
-          store.state.user.data  = response.data.user;
-          localStorage.setItem('auth_token', store.state.user.token)
+          store.state.user.data = response.data.user;
+          store.state.user.role = response.data.user.role;
           router.push({ name: 'Home' })
         })
       },
