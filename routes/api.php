@@ -43,12 +43,11 @@ Route::post('/comment', [CommentController::class, 'store']);
 Route::get('/post/{id}/comments', [CommentController::class, 'index']);
 
 // Admin Routes
-Route::middleware(['admin'])->group(function () {
-  Route::get('/admin/posts', [PostController::class, 'list']);
-});
+Route::post('/quote/insert', [QuoteController::class, 'insert']);
+Route::delete('/quotes/{id}', [QuoteController::class, 'delete']);
 
 // Auth routes
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth')->group(function () {
   Route::get('/me', [AuthController::class, 'me']);
   Route::get('getRole', [RoleController::class, 'getRole']);
 });

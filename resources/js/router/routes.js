@@ -9,6 +9,7 @@ import Participate from '../components/participate/Participate.vue'
 import Categories from '../components/categories/Categories.vue'
 import Category from '../components/categories/Category.vue'
 import AdminPanel from '../components/admin/AdminPanel.vue'
+import AdminQuotes from '../components/admin/quotes/AdminQuotes.vue'
 export const routes = [
   {
     path: '/',
@@ -75,5 +76,11 @@ export const routes = [
     name: 'AdminPanel',
     component: AdminPanel,
     meta: { title: 'Panel Administration', requiresAdmin: true }
+  },
+  {
+    path: '/admin/quotes',
+    name: 'AdminQuotes',
+    component: AdminQuotes,
+    meta: { title: 'Administration des citations', requiresAdmin: true }
   }
 ]

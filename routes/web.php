@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,9 +31,6 @@ Route::get('/post/{id}', function () {
     return view('base', ['title' => 'Article']);
 }); 
 
-Route::get('/login', function () {
-    return view('base', ['title' => 'Connexion']);
-}); 
 
 Route::get('/register', function () {
     return view('base', ['title' => 'Inscription']);
@@ -55,4 +54,8 @@ Route::get('categories/{id}', function () {
 
 Route::get('/admin', function () {
     return view('base', ['title' => 'Panel d\'administration']);
+});
+
+Route::get('/admin/quotes', function () {
+    return view('base', ['title' => 'Administrations citations']);
 });

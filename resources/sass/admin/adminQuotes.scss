@@ -1,0 +1,81 @@
+#admin-quotes-page {
+  #insert-quote-form {
+    & {
+      padding: 1rem;
+      width: 60vw;
+      margin: auto;
+    }
+
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      font-weight: bold;
+    }
+  }
+
+  .admin-quotes-container {
+    & {
+      display: grid;
+      grid-template-columns: 33% 33% 33%;
+    }
+
+    .quote {
+      & {
+        margin: 1rem auto;
+        width: 30vw;
+        padding-bottom: 1rem;
+      }
+  
+      .quote-header {
+        & {
+          padding: 0.7rem;
+          border-top-left-radius: 5px ;
+          border-top-right-radius: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background-color: var(--clr-markup);
+        }
+        
+        .created_at {
+          color: var(--clr-contrast)
+        }
+  
+        button {
+          width: 6rem;
+          height: 2rem;
+          padding: 0;
+        }
+  
+        p {
+          color: black;
+        }
+  
+      }
+  
+      .quote-container {
+  
+        & {
+          padding: 1rem;
+        }
+  
+        #quote-text {
+          text-align: center;
+        }
+  
+        #quote-author {
+          text-align: center;
+          font-weight: var(--font-family);
+        }
+      }
+
+      button {
+        display: block;
+        width: 20%;
+        margin: auto;
+        background-color: var(--clr-delete);
+        color: var(--clr-light);
+      }
+    }
+  }
+}
