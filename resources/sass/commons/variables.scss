@@ -6,6 +6,7 @@ html {
   --clr-bigmarkup: #00518F;
   --clr-text: #000000;
   --clr-contrast: #FFF;
+  --clr-delete: #e63946;
 
   --font-family: "Montserrat";
   --font-bold: "Montserrat bold";
@@ -21,7 +22,8 @@ html[data-theme='dark'] {
   --clr-markup: #FFBA08;
   --clr-bigmarkup: #F5AF00;
   --clr-text: #FFF;
-  --clr-contrast: #000000;;
+  --clr-contrast: #000000;
+
   --shadow-main: 5px 5px 10px 0 rgba(0, 0, 0, 0.15),
                   5px 5px 10px 0 rgba(0, 0, 0, 0.2);
 }

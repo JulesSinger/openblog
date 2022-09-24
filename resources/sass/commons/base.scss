@@ -47,6 +47,22 @@ h1 {
   font-size: 1.75rem;
 }
 
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mt-5 {
+  margin-top: 5rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.mb-5 {
+  margin-bottom: 5rem;
+}
+
 .btn {
   border: none;
   padding: 0.65rem;
@@ -106,7 +122,7 @@ h1 {
     gap: 0.75rem;
   }
 
-  input {
+  input, textarea {
     background-color: var(--clr-primary);
     border: none;
     margin: auto;
@@ -114,6 +130,7 @@ h1 {
     padding: 0.7rem;
     color: var(--clr-text);
     width: 100%;
+    resize: none;
   }
 }
 
