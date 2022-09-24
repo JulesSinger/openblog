@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Response;
+use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Cookie\CookieJar;
 
 class AuthController extends Controller
 {
@@ -26,13 +28,16 @@ class AuthController extends Controller
             'password' => 'required'
         ]);
 
+        
         $user = User::where('email', $request->email)->first();
-
-        if (Hash::check($request->password, $user->password)) {
-            return response()->json([
-                'user' => $user,
-                'token' => $user->createToken(time())->plainTextToken
-            ]);
+        
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            $cookie = $this->generateCookie(Auth::id());
+            return response()
+                ->json([
+                    'user' => Auth::getUser(),
+                ])->withCookie($cookie);
         }
 
         return response()->json([
@@ -75,11 +80,50 @@ class AuthController extends Controller
         $user->pseudo = $request->pseudo;
         $user->password = Hash::make($request->password);
         $user->save();
+        Auth::login($user);
 
-        return response()->json([
-            'user' => $user,
-            'token' => $user->createToken(time())->plainTextToken
-        ]);
+        $cookie = $this->generateCookie(Auth::id());
+
+        return response()
+            ->json(Auth::getUser())
+            ->withCookie($cookie);
+    }
+
+
+    /**
+     * Get informations about the current user
+     *
+     * @return Response
+     */
+    public function me()
+    {
+        /** @var User */
+        $user = Auth::user();
+        return response()->json($user->toArray());
+    }
+
+    /**
+     * Log out the user
+     *
+     * @return Response
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return response()->json()->withCookie(cookie('auth_token', null, -1));
+    }
+
+    /**
+     * Generate the cookie token
+     *
+     * @param integer $user_id
+     * @return Cookie|CookieJar
+     */
+    private function generateCookie(int $user_id)
+    {
+        return cookie('auth_token', JWT::encode([
+            'user_id' => $user_id
+        ], env('APP_KEY'), 'HS256'), 0, null, null, env('APP_ENV') === 'production', true);
     }
 }
 
