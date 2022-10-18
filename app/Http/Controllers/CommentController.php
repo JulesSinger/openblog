@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Resources\CommentResource;
+use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
 
@@ -35,7 +36,9 @@ class CommentController extends Controller
         $content = $request->input('content');
         $post_id = $request->input('post_id');
         $subject = $request->input('subject');
-
+        $user = Auth::user();
+        print_r($user);
+        return response()->json("test");
         $comment = new Comment();
         $comment->content = $content;
         $comment->user_id = 1;

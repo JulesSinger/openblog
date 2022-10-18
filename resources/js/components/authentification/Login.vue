@@ -33,27 +33,29 @@
 import  { reactive } from 'vue'
 import { useAuth } from '../../api/auth.js'
 import { useRouter } from 'vue-router'
-import store from '../../store'
-
+import { useStore } from 'vuex'
 export default {
   name: 'Login',
 
   setup() {
+    // router & store
     const router = useRouter()
+    const store = useStore()
 
+    // login form
     const login_form = reactive({
       email:'',
       password:'',
     })
-
+    
+    // login request
     const { loginWithCredentials, errors } = useAuth(login_form)
 
     return {
       login_form,
       login: () => {
         loginWithCredentials((response) => {
-          store.state.user.data = response.data.user;
-          store.state.user.role = response.data.user.role;
+          store.dispatch('auth/login',response.data.data.token)
           router.push({ name: 'Home' })
         })
       },

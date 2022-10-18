@@ -42,13 +42,16 @@
 import  { reactive } from 'vue'
 import { useAuth } from '../../api/auth.js'
 import { useRouter } from 'vue-router'
-import store from '../../store'
+import { useStore } from 'vuex'
 export default {
   name: 'Register',
 
   setup() {
+    // router & store
     const router = useRouter()
+    const store = useStore()
 
+    // register form
     const register_form = reactive({
       pseudo: '',
       email: '',
@@ -56,15 +59,14 @@ export default {
       password_confirmation: '',
     })
 
+    // register request
     const { registerWithCredentials, errors } = useAuth(register_form)
 
     return {
       register_form,
       register : () => {
         registerWithCredentials((response) => {
-          store.state.user.token = response.data.token;
-          store.state.user.data  = response.data.user;
-          localStorage.setItem('auth_token', store.state.user.token)
+          store.dispatch('auth/login',response.data.data.token)
           router.push({ name: 'Home' })
         })
       },

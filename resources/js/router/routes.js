@@ -10,77 +10,107 @@ import Categories from '../components/categories/Categories.vue'
 import Category from '../components/categories/Category.vue'
 import AdminPanel from '../components/admin/AdminPanel.vue'
 import AdminQuotes from '../components/admin/quotes/AdminQuotes.vue'
+
 export const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home ,
-    meta: { title: 'Accueil' }
+    component: Home,
+    meta: { 
+      title: 'Accueil' 
+    }
   },
   {
     path: '/post/:id',
     name: 'Post',
     component: Post,
-    meta: { title: 'Article' }
+    meta: { 
+      title: 'Article' 
+    }
   },
   {
     path: '/quotes',
     name: 'Quotes',
     component: Quotes,
-    meta: { title: 'Citations' }
+    meta: { 
+      title: 'Citations',
+    }
   },
   {
     path: '/about',
     name: 'About',
     component: About,
-    meta: { title: 'À Propos' }
+    meta: { 
+      title: 'À Propos' 
+    }
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
-    meta: { title: 'Connexion' }
+    meta: { 
+      middleware: "guest",
+      title: 'Connexion' 
+    }
   },
   {
     path: '/register',
     name: 'Register',
     component: Register,
-    meta: { title: 'Inscription' }
+    meta: { 
+      middleware: "guest",
+      title: 'Inscription' 
+    }
   },
   {
     path: '/account',
     name: 'Account',
     component: Account,
-    meta: { title: 'Mon Compte', requiresAuth: true }
+    meta: { 
+      middleware: "auth",
+      title: 'Mon Compte', 
+    }
   },
   {
     path: '/participate',
     name: 'Participate',
     component: Participate,
-    meta: { title: 'Publier un article' }
+    meta: { 
+      title: 'Publier un article' 
+    }
   },
   {
     path: '/categories',
     name: 'Categories',
     component: Categories,
-    meta: { title: 'Catégories d\'article' }
+    meta: { 
+      title: 'Catégories d\'article' 
+    }
   },
   {
     path: '/categories/:id',
     name: 'Category',
     component: Category,
-    meta: { title: 'Categorie' }
+    meta: { 
+      title: 'Categorie' 
+    }
   },
   {
     path: '/admin',
     name: 'AdminPanel',
     component: AdminPanel,
-    meta: { title: 'Panel Administration', requiresAdmin: true }
+    meta: { 
+      middleware: "admin",
+      title: 'Panel Administration', requiresAuth: true 
+    },
   },
   {
     path: '/admin/quotes',
     name: 'AdminQuotes',
     component: AdminQuotes,
-    meta: { title: 'Administration des citations', requiresAdmin: true }
+    meta: { 
+      middleware: "admin",
+      title: 'Administration des citations', requiresAdmin: true 
+    }
   }
 ]

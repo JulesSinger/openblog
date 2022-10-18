@@ -16,7 +16,7 @@ export default function useComments() {
      * post a comment with data 
      */
     const postComment = async (data) => {
-        await axios.post(`/api/comment`, data)
+        await axios.post(`/api/comment`, data).then((res) => console.log(res))
     }
 
     return {
