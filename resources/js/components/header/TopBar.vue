@@ -4,17 +4,16 @@
     <img v-else class="logo" src="/images/others/logo_openblog.svg" alt="L'OpenBlog">
     <div class="top-bar-actions">
       
-      <p>{{ user }}</p>
-
+      <p>{{ loggedUser }}</p>
       <DarkMode @toggleTheme="darkMode = !darkMode" />
-
-      <div id="auth-actions" v-if="user == null">
+      
+      <div id="auth-actions" v-if="!isLogged">
         <router-link :to="{name: 'Register'}" class="btn btn-light">Inscription</router-link>
         <router-link :to="{name: 'Login'}" class="btn btn-markup">Connexion</router-link>
       </div>
 
       <div id="account-actions" v-else>
-        <router-link v-if="role=='admin'" :to="{name: 'AdminPanel'}" class="btn btn-markup">Panel Admin</router-link>
+        <router-link v-if="loggedUser.role =='admin'" :to="{name: 'AdminPanel'}" class="btn btn-markup">Panel Admin</router-link>
         <router-link :to="{name: 'Account'}" class="btn btn-link"><img src="/images/icons/man-user.svg" alt="user"></router-link>
         <router-link :to="{name: 'Home'}" class="btn btn-link" @click="logout"><img src="/images/icons/logout.png" alt="logout"></router-link>
       </div>
@@ -38,8 +37,11 @@
 </template>
 <script>
 import DarkMode from './DarkMode.vue'
-import { ref, computed } from 'vue'
-import store from '../../store'
+import { ref } from 'vue'
+import { useAuth } from '../../api/auth.js'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+import { computed } from 'vue'
 export default {
   name: 'TopBar',
 
@@ -48,18 +50,28 @@ export default {
   },
 
   setup() {
-    const darkMode = ref(false)
-    if (!localStorage.getItem('preferredDarkMode') || localStorage.getItem('preferredDarkMode') == 'false') {
+    // router & store
+    const router = useRouter()
+    const store = useStore()
+
+    // dark/light mode
+    const darkMode = ref(true)
+    if (!localStorage.getItem('preferredDarkMode') || localStorage.getItem('preferredDarkMode') == 'false') 
       darkMode.value = false
-    } else {
-      darkMode.value = true
-    } 
+
+    // logout request
+    const { logout_user } = useAuth()
 
     return {
+      isLogged: computed(() => store.state.auth.authenticated),
+      loggedUser: computed(() => store.state.auth.user),
+      logout: () => {
+        logout_user((response) => {
+          store.dispatch('auth/logout_store')
+          router.push({ name: 'Home' })
+        })
+      },
       darkMode,
-      user: computed(() => store.state.user.data),
-      logout: () => store.dispatch('logout'),
-      role: computed(() => store.state.user.role),
     }
   },
 }

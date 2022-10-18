@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ref } from 'vue'
-
+import store from '../store/'
 
 export default function useAuth(form = null) {
   const errors = ref('');
@@ -19,7 +19,7 @@ export default function useAuth(form = null) {
     .catch((error) => {
         errors.value = ''
 
-      switch (error.response.status) {
+      switch (error.status) {
         case 422: // erreurs de champs (champ vide ..)
           const loginErrors = error.response.data.errors
 
@@ -50,7 +50,7 @@ export default function useAuth(form = null) {
     .catch(error => {
       errors.value = ''
 
-      switch (error.response.status) {
+      switch (error.status) {
         case 422: // erreur de champs (champ vide ..)
           const registerErrors = error.response.data.errors
 
@@ -70,9 +70,23 @@ export default function useAuth(form = null) {
     })
   }
 
+  const logout_user = async (onSuccess = null) => {
+    await axios.post('/api/logout',
+    {
+      headers: {
+        'Authorization': `Bearer ${store.state.auth.token}`
+      },
+    })
+    .then((res) => {
+      if(onSuccess !== null) return onSuccess(res)
+    })
+    .catch((err) => console.log(err))
+  }
+
   return {
     loginWithCredentials,
     registerWithCredentials,
+    logout_user,
     errors
   }
 }

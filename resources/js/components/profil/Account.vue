@@ -13,12 +13,16 @@
 
 <script>
 
-import store from '../../store'
+import { useStore } from 'vuex'
+import { computed } from 'vue'
 export default {
   name: 'Account',
 
   setup () {
-    return { user : store.state.user.data }
+    const store = useStore()
+    return { 
+      user: computed(() => store.state.auth.user),
+    }
   }
 }
 </script>

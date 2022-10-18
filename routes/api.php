@@ -22,7 +22,6 @@ use App\Http\Controllers\RoleController;
 */
 
 // Authentication routes
-
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
@@ -47,7 +46,8 @@ Route::post('/quote/insert', [QuoteController::class, 'insert']);
 Route::delete('/quotes/{id}', [QuoteController::class, 'delete']);
 
 // Auth routes
-Route::middleware('auth')->group(function () {
-  Route::get('/me', [AuthController::class, 'me']);
-  Route::get('getRole', [RoleController::class, 'getRole']);
+Route::middleware(['auth:sanctum'])->group(function () {
+  Route::get('/user', function (Request $request) {
+      return $request->user();
+  });
 });
