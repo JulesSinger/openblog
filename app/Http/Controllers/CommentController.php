@@ -37,11 +37,9 @@ class CommentController extends Controller
         $post_id = $request->input('post_id');
         $subject = $request->input('subject');
         $user = Auth::user();
-        print_r($user);
-        return response()->json("test");
         $comment = new Comment();
         $comment->content = $content;
-        $comment->user_id = 1;
+        $comment->user_id = $user->id;
         $comment->post_id = $post_id;
         $comment->subject = $subject;
         $comment->save();

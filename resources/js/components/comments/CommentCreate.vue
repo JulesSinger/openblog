@@ -11,12 +11,13 @@
 <script>
 import { reactive } from 'vue'
 import { useComments } from '../../api/comments.js'
-import { useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 export default {
     name: 'CommentCreate',
 
      data () {
-        const route= useRoute();
+        const router= useRouter();
+        const route = useRoute()
         const id = route.params.id
 
         const form = reactive({
@@ -25,15 +26,15 @@ export default {
             post_id : id,
         })
 
-        const { postComment } = useComments()
-
-        const createComment = async () => {
-            await postComment({...form})
-        }
+        const { postComment } = useComments(form)
 
         return {
             form,
-            createComment
+            createComment: () => {
+                postComment((response) => {
+                    //router.push({ name: 'Post', params: { id: id  }})
+                })
+            }
         }
     } 
 }

@@ -4,7 +4,6 @@
     <img v-else class="logo" src="/images/others/logo_openblog.svg" alt="L'OpenBlog">
     <div class="top-bar-actions">
       
-      <p>{{ loggedUser }}</p>
       <DarkMode @toggleTheme="darkMode = !darkMode" />
       
       <div id="auth-actions" v-if="!isLogged">
