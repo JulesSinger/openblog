@@ -29,9 +29,14 @@ Route::post('/logout', [AuthController::class, 'logout']);
 // Category routes
 Route::get('/categories', [CategoryController::class, 'list']);
 Route::get('/categories/{id}', [CategoryController::class, 'index']);
+Route::post('/categories/insert', [CategoryController::class, 'insert']);
+Route::patch('/categories/update/{id}', [CategoryController::class, 'update']);
+Route::delete('/categories/delete/{id}', [CategoryController::class, 'delete']);
 
 // Quote routes
 Route::get('/quotes', [QuoteController::class, 'index']);
+Route::post('/quotes/insert', [QuoteController::class, 'insert']);
+Route::delete('/quotes/{id}', [QuoteController::class, 'delete']);
 
 // Post routes
 Route::get('/posts', [PostController::class, 'list']);
@@ -40,10 +45,6 @@ Route::get('/posts/{id}', [PostController::class, 'index']);
 // Comment routes
 Route::post('/comment', [CommentController::class, 'store']);
 Route::get('/post/{id}/comments', [CommentController::class, 'index']);
-
-// Admin Routes
-Route::post('/quote/insert', [QuoteController::class, 'insert']);
-Route::delete('/quotes/{id}', [QuoteController::class, 'delete']);
 
 // Auth routes
 Route::middleware(['auth:sanctum'])->group(function () {

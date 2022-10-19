@@ -1,6 +1,6 @@
 <template>
   <div id="admin-quotes-page">
-    <Flag title="Panel Administration" subtitle="Gestion des citations"/>
+    <Flag title="PANEL D'ADMINISTRATION" subtitle="GESTION DES CITATIONS"/>
 
     <h2 class="text-center">AJOUTER UNE CITATION</h2>
     <form @submit.prevent='insertQuote' id="insert-quote-form" class="container">
@@ -44,7 +44,7 @@ export default {
       content:'',
     })
     
-    const { quotes, getQuotes, insertQuote } = useQuotes(insert_quote_form, null)
+    const { quotes, getQuotes, insertQuote } = useQuotes(insert_quote_form)
     onMounted(getQuotes())
 
     const toast = inject('toast');

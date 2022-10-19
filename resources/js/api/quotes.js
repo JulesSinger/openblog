@@ -3,7 +3,7 @@ import { getWritingDate } from './dateFormat'
 import { ref } from 'vue'
 import store from '../store';
 
-export default function useQuotes(insertForm = null, deleteForm = null) {
+export default function useQuotes(insertForm = null) {
     const quotes = ref([])
 
     const getQuotes = async () => {
@@ -15,7 +15,7 @@ export default function useQuotes(insertForm = null, deleteForm = null) {
     }
 
     const insertQuote = async (onSuccess = null) => {
-        await axios.post('/api/quote/insert', insertForm, store.state.auth.user,
+        await axios.post('/api/quotes/insert', insertForm, store.state.auth.user,
             {
                 headers: {
                     'Accept': 'application/json',

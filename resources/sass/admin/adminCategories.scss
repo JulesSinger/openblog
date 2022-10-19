@@ -1,0 +1,43 @@
+#admin-categories-page {
+  #insert-category-form {
+    & {
+      padding: 1rem;
+      width: 60vw;
+      margin: auto;
+      margin-bottom: 5rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      font-weight: bold;
+    }
+  }
+
+  #update-category-form {
+    & {
+      padding: 1rem;
+      width: 60vw;
+      margin: auto;
+      margin-bottom: 5rem;
+    }
+
+    #select-container {
+      & {
+        display: flex;
+        flex-direction: row;
+      }
+
+      select {
+        transform: translateY(-5px);
+      }
+    }
+
+    button {
+      margin-top: 1rem;
+      width: 100%;
+      font-weight: bold;
+    }
+  }
+
+}

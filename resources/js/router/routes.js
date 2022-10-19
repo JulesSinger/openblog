@@ -10,6 +10,7 @@ import Categories from '../components/categories/Categories.vue'
 import Category from '../components/categories/Category.vue'
 import AdminPanel from '../components/admin/AdminPanel.vue'
 import AdminQuotes from '../components/admin/quotes/AdminQuotes.vue'
+import AdminCategories from '../components/admin/Categories/AdminCategories.vue'
 
 export const routes = [
   {
@@ -101,7 +102,7 @@ export const routes = [
     component: AdminPanel,
     meta: { 
       middleware: "admin",
-      title: 'Panel Administration', requiresAuth: true 
+      title: 'Panel Administration'
     },
   },
   {
@@ -110,7 +111,16 @@ export const routes = [
     component: AdminQuotes,
     meta: { 
       middleware: "admin",
-      title: 'Administration des citations', requiresAdmin: true 
+      title: 'Administration des citations'
+    }
+  },
+  {
+    path: '/admin/categories',
+    name: 'AdminCategories',
+    component: AdminCategories,
+    meta: { 
+      middleware: "admin",
+      title: 'Administration des catégories'
     }
   }
 ]

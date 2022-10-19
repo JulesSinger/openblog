@@ -9,7 +9,7 @@
       <p id="quote-author"> {{ quote.author }} </p>
     </div>
 
-    <button type="submit" class="btn btn-markup"> SUPPRIMER </button>
+    <button type="submit" class="btn btn-red"> SUPPRIMER </button>
   </form>
 </template>
 <script>
@@ -28,13 +28,12 @@ export default {
 
   setup() {
 
-    const { quotes, deleteQuote } = useQuotes()
+    const { deleteQuote } = useQuotes()
 
     const toast = inject('toast');
    
     return {
       deleteQuote: (quoteId) => {
-        console.log("quoteid : " ,quoteId)
         if (confirm('êtes-vous sûr de vouloir supprimer cette citation ?')) 
           return deleteQuote(quoteId, () => {
             toast.error('Citation supprimée');

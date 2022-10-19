@@ -81,6 +81,11 @@ h1 {
   background-color: var(--clr-bigmarkup);
 }
 
+.btn-red {
+  background-color: var(--clr-delete);
+  color: var(--clr-light);
+}
+
 .btn-light {
   border : 1px solid var(--clr-markup);
   color: var(--clr-markup);
@@ -125,13 +130,22 @@ h1 {
   input, textarea {
     background-color: var(--clr-primary);
     border: none;
-    margin: auto;
     border-radius: 5px;
     padding: 0.7rem;
     color: var(--clr-text);
-    width: 100%;
+    width: 98%;
     resize: none;
   }
+}
+
+ .custom-select {
+  background-color: var(--clr-primary);
+  color: var(--clr-text);
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  width: 15%;
+  padding: 0.5rem;
 }
 
 .alert-error {
