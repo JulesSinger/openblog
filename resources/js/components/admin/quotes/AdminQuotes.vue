@@ -28,6 +28,7 @@ import { onMounted, reactive } from 'vue'
 import { useQuotes } from '../../../api/quotes.js'
 import QuoteDelete from './QuoteDelete.vue'
 import Flag from "../../helpers/Flag.vue"
+import { inject } from 'vue'
 export default {
   name: 'AdminQuotes',
 
@@ -45,11 +46,16 @@ export default {
     
     const { quotes, getQuotes, insertQuote } = useQuotes(insert_quote_form, null)
     onMounted(getQuotes())
+
+    const toast = inject('toast');
+
     return {
       insert_quote_form,
       quotes,
       insertQuote: () => {
-        insertQuote((response) => {console.log(response)})
+        insertQuote((response) => {
+          toast.success('Citation Insérée');
+        })
       }
     }
   }

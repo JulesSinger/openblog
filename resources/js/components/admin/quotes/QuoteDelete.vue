@@ -14,7 +14,8 @@
 </template>
 <script>
 import { useQuotes } from '../../../api/quotes'
-import { onMounted } from 'vue'
+import { inject } from 'vue'
+
 export default {
   name: 'QuoteDelete',
 
@@ -28,13 +29,15 @@ export default {
   setup() {
 
     const { quotes, deleteQuote } = useQuotes()
+
+    const toast = inject('toast');
    
     return {
       deleteQuote: (quoteId) => {
         console.log("quoteid : " ,quoteId)
         if (confirm('êtes-vous sûr de vouloir supprimer cette citation ?')) 
           return deleteQuote(quoteId, () => {
-            console.log("quotes: ",quotes.value)
+            toast.error('Citation supprimée');
           })
       }
     }

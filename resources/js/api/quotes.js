@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { getWritingDate } from './dateFormat'
 import { ref } from 'vue'
-import axiosClient from "../axios";
 import store from '../store';
 
 export default function useQuotes(insertForm = null, deleteForm = null) {
@@ -16,7 +15,7 @@ export default function useQuotes(insertForm = null, deleteForm = null) {
     }
 
     const insertQuote = async (onSuccess = null) => {
-        await axiosClient.post('/api/quote/insert', insertForm, store.state.user.data,
+        await axios.post('/api/quote/insert', insertForm, store.state.auth.user,
             {
                 headers: {
                     'Accept': 'application/json',
@@ -32,7 +31,7 @@ export default function useQuotes(insertForm = null, deleteForm = null) {
     }
 
     const deleteQuote = async (quoteId, onSuccess = null) => {
-        await axiosClient.delete(`/api/quotes/${quoteId}`, insertForm,
+        await axios.delete(`/api/quotes/${quoteId}`, insertForm,
         {
             headers: {
                 'Accept': 'application/json',

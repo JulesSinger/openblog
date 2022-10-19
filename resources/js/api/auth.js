@@ -17,9 +17,8 @@ export default function useAuth(form = null) {
       if (onSuccess !== null) return onSuccess(response)
     })
     .catch((error) => {
-        errors.value = ''
-
-      switch (error.status) {
+      errors.value = ''
+      switch (error.response.status) {
         case 422: // erreurs de champs (champ vide ..)
           const loginErrors = error.response.data.errors
 
@@ -50,7 +49,7 @@ export default function useAuth(form = null) {
     .catch(error => {
       errors.value = ''
 
-      switch (error.status) {
+      switch (error.response.status) {
         case 422: // erreur de champs (champ vide ..)
           const registerErrors = error.response.data.errors
 
