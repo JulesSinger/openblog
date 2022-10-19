@@ -1,5 +1,6 @@
 <template>
-  <form @submit.prevent='deleteQuote(quote.id)' class="quote container mb-2">
+  <!-- DELETE QUOTE -->
+  <form @submit.prevent='call_delete_quote(quote.id)' class="quote container mb-2">
     <div class="quote-header">
       <p class="created_at">Posté le {{ quote.created_at }} </p>
     </div>
@@ -11,35 +12,42 @@
 
     <button type="submit" class="btn btn-red"> SUPPRIMER </button>
   </form>
+  <!-- DELETE QUOTE -->
 </template>
-<script>
+
+<script setup>
+
 import { useQuotes } from '../../../api/quotes'
 import { inject } from 'vue'
 
-export default {
-  name: 'QuoteDelete',
+/**
+ * define the quote prop
+ */
+const props = defineProps({
+  quote: {
+    type: Object,
+    required: true
+  }
+})
 
-  props: {
-    quote: {
-      type: Object,
-      required: true
-    }
-  },
+/**
+ * import the delete quote api function
+ */
+const { deleteQuote } = useQuotes()
 
-  setup() {
+/**
+ * create a toast instance
+ */
+const toast = inject('toast');
 
-    const { deleteQuote } = useQuotes()
-
-    const toast = inject('toast');
-   
-    return {
-      deleteQuote: (quoteId) => {
-        if (confirm('êtes-vous sûr de vouloir supprimer cette citation ?')) 
-          return deleteQuote(quoteId, () => {
-            toast.error('Citation supprimée');
-          })
-      }
-    }
+/**
+ * call the function that send a delete quote request
+ */
+const call_delete_quote = (quoteId) => {
+  if (confirm('êtes-vous sûr de vouloir supprimer cette citation ?')) {
+    return deleteQuote(quoteId, () => {
+      toast.error('Citation supprimée');
+    })
   }
 }
 </script>

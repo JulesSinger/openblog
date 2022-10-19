@@ -9,8 +9,6 @@
     </ul>
   </nav>
 </template>
-<script>
-export default {
-  name: 'Navigation'
-}
+
+<script setup>
 </script>

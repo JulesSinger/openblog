@@ -4,20 +4,22 @@
     <h1 class="flag-subtitle"> {{ subtitle }} </h1>
   </div>
 </template>
-<script>
-export default {
-  name: 'Flag',
 
-  props: {
-    title: {
-      type: String,
-      required: true
-    },
+<script setup>
 
-    subtitle: {
-      type: String,
-      required: false
-    }
+/**
+ * define title and subtitle props
+ */
+ const props = defineProps({
+  title: {
+    type: String,
+    required: true
+  },
+
+  subtitle: {
+    type: String,
+    required: false
   }
-}
+})
+
 </script>

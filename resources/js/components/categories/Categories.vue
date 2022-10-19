@@ -7,28 +7,21 @@
   </div>
 </template>
 
-<script>
+<script setup>
 
 import Flag from '../helpers/Flag.vue'
 import CategoryPreview from './CategoryPreview.vue'
 import { useCategories } from '../../api/categories'
 import { onMounted } from 'vue'
 
-export default { 
-  name: 'Categories',
-  
-  components: {
-    Flag,
-    CategoryPreview,
-  },
+/**
+ * import the category api 
+ */
+const { categories, getCategories } = useCategories()
 
-  setup() {
-    const { categories, getCategories } = useCategories()
-    onMounted(getCategories())
+/**
+ * When the component loads, we get the categories
+ */
+onMounted(getCategories())
 
-    return {
-      categories
-    }
-  }
-}
 </script>

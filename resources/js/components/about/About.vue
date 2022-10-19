@@ -31,15 +31,7 @@
     </div>
   </div>
 </template>
-<script>
 
+<script setup>
 import Flag from '../helpers/Flag.vue'
-export default {
-  name: 'About',
-
-  components: {
-    Flag,
-  }
-
-}
 </script>

@@ -7,15 +7,17 @@
     <span><img src="/images/icons/right_direction.svg" alt="right"></span>
   </div>
 </template>
-<script>
-export default {
-  name: 'Pagination',
 
-  props: {
-    pagination: {
-      type: Object,
-      required: true
-    },
+<script setup>
+
+/**
+ * define pagination prop
+ */
+const props = defineProps({
+  pagination: {
+    type: Object,
+    required: true
   }
-}
+})
+
 </script>

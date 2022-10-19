@@ -11,18 +11,16 @@
   </div>
 </template>
 
-<script>
+<script setup>
 
 import { useStore } from 'vuex'
 import { computed } from 'vue'
-export default {
-  name: 'Account',
 
-  setup () {
-    const store = useStore()
-    return { 
-      user: computed(() => store.state.auth.user),
-    }
-  }
-}
+// store
+const store = useStore()
+
+/**
+ * get the logged user
+ */
+const user = computed(() => store.state.auth.user)
 </script>

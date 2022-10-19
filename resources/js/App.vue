@@ -6,21 +6,20 @@
         </div>
     </div>
    
-  </template>
+</template>
   
-  <script>
-  import Header from './components/header/Header.vue'
-  export default {
-    name: 'App',
-  
-    components: {
-        Header
-    },
-  
-    computed: {
-        routePath() {
-            return this.$route.path
-        }
-    },
-  }
-  </script>
+<script setup>
+
+import Header from './components/header/Header.vue'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+// route
+const route = useRoute()
+
+/**
+ * get url
+ */
+const routePath = computed(() => route.path)
+
+</script>

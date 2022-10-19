@@ -3,31 +3,24 @@
     <PostPreview v-for="post in posts" :post='post'  />
     <Pagination v-if="pagination" :pagination="pagination" />
     {{ pagination }}
-
   </div>
 </template>
-<script>
+
+<script setup>
+
 import PostPreview from './posts/PostPreview.vue'
 import Pagination from './helpers/Pagination.vue'
 import { usePost } from '../api/posts.js'
 import { onMounted } from 'vue'
 
-export default {
-  name: 'Home',
+/**
+ * get post api
+ */
+const { posts, pagination, getPosts } = usePost()
 
-  components: {
-    PostPreview, 
-    Pagination
-  },
+/**
+ * when the component loads, get the posts
+ */
+onMounted(getPosts())
 
-  data () {
-    const { posts, pagination, getPosts } = usePost()
-    onMounted(getPosts())
-
-    return {
-      posts,
-      pagination
-    }
-  }
-}
 </script>

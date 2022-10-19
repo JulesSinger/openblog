@@ -12,6 +12,5 @@
         @section('content')
         <div id="app"></div>    
         @show
-
     </body>
 </html>

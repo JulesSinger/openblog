@@ -6,29 +6,22 @@
     </div>
   </div>
 </template>
-<script>
+
+<script setup>
 
 import Flag from '../helpers/Flag.vue'
 import Quote from './Quote.vue'
-import Header from '../header/Header.vue'
 import { useQuotes } from '../../api/quotes.js'
 import { onMounted } from 'vue'
-export default {
-  name: 'Quotes',
 
-  components: {
-    Quote,
-    Flag,
-    Header
-  },
+/**
+ * load the quote api
+ */
+const { quotes, getQuotes } = useQuotes()
 
-  data () {
-    const { quotes, getQuotes } = useQuotes()
-    onMounted(getQuotes())
+/**
+ * when the component loads, get the quotes
+ */
+onMounted(getQuotes())
 
-    return {
-      quotes
-    }
-  }
-}
 </script>

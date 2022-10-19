@@ -11,34 +11,30 @@
     </div>
   </div>
 </template>
-<script>
-export default {
-  name: 'Quote',
 
-  props: {
-    quote: {
-      type: Object,
-      required: true
-    }
-  },
+<script setup>
 
-  data () {
-    /**
-     * copy the content and the author of the current quote in the clipboard
-     */
-    let copyQuote = (content, author) => {
-      navigator.clipboard.writeText('"' + content + '"' + ' ' + author)
-      .then(() => {
-          alert('Success')
-        }
-      ).catch(() => {
-        alert('fail')
-      })
-    }
-
-    return  {
-      copyQuote
-    }
+/**
+ * define quote prop
+ */
+ const props = defineProps({
+  quote: {
+    type: Object,
+    required: true
   }
+})
+
+/**
+ * copy the content and the author of the current quote in the clipboard
+ */
+const copyQuote = (content, author) => {
+  navigator.clipboard.writeText('"' + content + '"' + ' ' + author)
+  .then(() => {
+      alert('Success')
+    }
+  ).catch(() => {
+    alert('fail')
+  })
 }
+
 </script>

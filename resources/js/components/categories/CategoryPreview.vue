@@ -10,15 +10,16 @@
   </router-link>
 </template>
 
-<script>
-export default {
-  name: 'CategoryPreview',
+<script setup>
 
-  props: {
-    category: {
-      type: Object,
-      required: true
-    }
+/**
+ * define the category prop
+ */
+const props = defineProps({
+  category: {
+    type: Object,
+    required: true
   }
-}
+})
+
 </script>

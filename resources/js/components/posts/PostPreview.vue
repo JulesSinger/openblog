@@ -11,15 +11,17 @@
     </div>
   </router-link>
 </template>
-<script>
-export default {
-  name: 'PostPreview',
 
-  props: {
-    post: {
-      type: Object,
-      required: true
-    },
-  }
-}
+<script setup>
+
+/**
+ * define post prop
+ */
+const props = defineProps({
+  post: {
+    type: Object,
+    required: true
+  },
+})
+
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <form class="comment-post" @submit.prevent="createComment">
+    <form class="comment-post" @submit.prevent="call_post_comment">
         <label for="content">Ajouter un commentaire :</label>
         <input placeholder="Objet du commentaire" type="text" name="subject" id="subject" v-model="form.subject">
         <textarea placeholder="Contenu de votre commentaire ici" name="content" id="content" v-model="form.content"></textarea>
@@ -8,34 +8,40 @@
         </div>
     </form>
 </template>
-<script>
+
+<script setup>
+
 import { reactive } from 'vue'
 import { useComments } from '../../api/comments.js'
-import { useRouter, useRoute } from 'vue-router'
-export default {
-    name: 'CommentCreate',
+import { useRoute } from 'vue-router'
 
-     data () {
-        const router= useRouter();
-        const route = useRoute()
-        const id = route.params.id
+// route
+const route = useRoute()
 
-        const form = reactive({
-            content: '',
-            subject: '',
-            post_id : id,
-        })
+/**
+ * post_id get by url params
+ */
+const id = route.params.id
 
-        const { postComment } = useComments(form)
+/**
+ * this form is linked to the post comment form in html
+ */
+const form = reactive({
+    content: '',
+    subject: '',
+    post_id : id,
+})
 
-        return {
-            form,
-            createComment: () => {
-                postComment((response) => {
-                    //router.push({ name: 'Post', params: { id: id  }})
-                })
-            }
-        }
-    } 
+/**
+ * load comment api
+ */
+const { postComment } = useComments(form)
+
+/**
+ * call a function that send a post comment request
+ */
+const call_post_comment = () => {
+    postComment((response) => {})
 }
+
 </script>

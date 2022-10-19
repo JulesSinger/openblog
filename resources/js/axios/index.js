@@ -1,6 +1,6 @@
 import axios from "axios"
 import store from "../store"
-console.log(store.state.auth.token)
+
 const axiosClient = axios.create({
   baseURL: 'http://127.0.0.1:8000',
   headers: {

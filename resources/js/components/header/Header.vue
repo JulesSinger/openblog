@@ -4,16 +4,10 @@
     <Navigation />
   </header>
 </template>
-<script>
+
+<script setup>
+
 import Navigation from './Navigation.vue'
 import TopBar from './TopBar.vue'
 
-export default {
-  name: 'Header',
-
-  components: {
-    Navigation,
-    TopBar
-  }
-}
 </script>

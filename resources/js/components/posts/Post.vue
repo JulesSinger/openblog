@@ -30,31 +30,32 @@
     </div>
   </div>
 </template>
-<script>
+
+<script setup>
+
 import Comments from '../comments/Comments.vue'
 import CommentCreate from '../comments/CommentCreate.vue'
 import Flag from '../helpers/Flag.vue'
 import { usePost } from '../../api/posts'
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-export default {
-  name: 'Post',
 
-  components: {
-    CommentCreate,
-    Comments,
-    Flag
-  },
+// route
+const route = useRoute()
 
-  data() {
-    const route = useRoute()
-    const post_id = route.params.id
-    const { post, getPost } = usePost(post_id)
-    onMounted(getPost())
+/**
+ * get the post_id by url param
+ */
+const post_id = route.params.id
 
-    return {
-      post
-    }
-  }
-}
+/**
+ * load post api
+ */
+const { post, getPost } = usePost(post_id)
+
+/**
+ * when the component loads, get the current post
+ */
+onMounted(getPost())
+
 </script>
