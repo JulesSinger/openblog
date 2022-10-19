@@ -1,18 +1,11 @@
-import axios from 'axios'
+import axiosClient from '../axios'
 import { ref } from 'vue'
-import store from '../store/'
 
 export default function useAuth(form = null) {
   const errors = ref('');
 
   const loginWithCredentials = async (onSuccess = null) => {
-    await axios.post(`/api/login`, form, 
-      {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-      })
+    await axiosClient.post(`/api/login`, form)
     .then((response) => {
       if (onSuccess !== null) return onSuccess(response)
     })
@@ -36,13 +29,7 @@ export default function useAuth(form = null) {
   } 
 
   const registerWithCredentials = async (onSuccess = null) => {
-    await axios.post('/api/register', form,
-      {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-      })
+    await axiosClient.post('/api/register', form)
     .then(response => {
       if (onSuccess !== null) return onSuccess(response)
     })
@@ -70,12 +57,7 @@ export default function useAuth(form = null) {
   }
 
   const logout_user = async (onSuccess = null) => {
-    await axios.post('/api/logout',
-    {
-      headers: {
-        'Authorization': `Bearer ${store.state.auth.token}`
-      },
-    })
+    await axios.post('/api/logout')
     .then((res) => {
       if(onSuccess !== null) return onSuccess(res)
     })

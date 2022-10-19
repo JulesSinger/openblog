@@ -1,13 +1,14 @@
 import axios from "axios"
 import store from "../store"
-
+console.log(store.state.auth.token)
 const axiosClient = axios.create({
-  baseURL: 'http://127.0.0.1:8000'
+  baseURL: 'http://127.0.0.1:8000',
+  headers: {
+    'Accept' : 'application/json',
+    'Content-Type' : 'application/json',
+    'Authorization': `Bearer ${store.state.auth.token}`
+  }
 })
 
-axiosClient.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${store.state.user.token}`
-  return config;
-})
 
 export default axiosClient

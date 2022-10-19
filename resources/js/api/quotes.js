@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axiosClient from '../axios'
 import { getWritingDate } from './dateFormat'
 import { ref } from 'vue'
 import store from '../store';
@@ -7,7 +7,7 @@ export default function useQuotes(insertForm = null) {
     const quotes = ref([])
 
     const getQuotes = async () => {
-        let response = await axios.get(`/api/quotes`)
+        let response = await axiosClient.get(`/api/quotes`)
         response.data.data.forEach(quote => {
             quote.created_at = getWritingDate(quote.created_at)
         });
@@ -15,13 +15,7 @@ export default function useQuotes(insertForm = null) {
     }
 
     const insertQuote = async (onSuccess = null) => {
-        await axios.post('/api/quotes/insert', insertForm, store.state.auth.user,
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',                    
-                },
-            })
+        await axiosClient.post('/api/quotes/insert', insertForm, store.state.auth.user)
         .then(response => {
             if(onSuccess !== null) return onSuccess(response)
         })
@@ -31,15 +25,8 @@ export default function useQuotes(insertForm = null) {
     }
 
     const deleteQuote = async (quoteId, onSuccess = null) => {
-        await axios.delete(`/api/quotes/${quoteId}`, insertForm,
-        {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',                    
-            },
-        })
+        await axiosClient.delete(`/api/quotes/${quoteId}`, insertForm)
         .then((response) => {
-            console.log(response)
             if(onSuccess !== null) return onSuccess(response)
         })
         .catch((error) => {

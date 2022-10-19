@@ -1,6 +1,5 @@
-import axios from 'axios'
 import { ref } from 'vue'
-
+import axiosClient from '../axios'
 
 export default function useCategories(category_id = null, insertForm = null, updateForm = null) {
     const category = ref()
@@ -10,7 +9,7 @@ export default function useCategories(category_id = null, insertForm = null, upd
      * get all categories
      */
     const getCategories = async () => {
-        let response = await axios.get(`/api/categories`);
+        let response = await axiosClient.get(`/api/categories`);
         categories.value = response.data.data
     }
 
@@ -18,7 +17,7 @@ export default function useCategories(category_id = null, insertForm = null, upd
      * get the current category
      */
     const getCategory = async () => {
-        let response = await axios.get(`/api/categories/${category_id}`)
+        let response = await axiosClient.get(`/api/categories/${category_id}`)
         category.value = response.data.data[0]
     }
 
@@ -26,13 +25,7 @@ export default function useCategories(category_id = null, insertForm = null, upd
      * create a new category with the insertForm data
      */
     const insertCategory = async (onSuccess = null) => {
-        await axios.post('/api/categories/insert', insertForm,
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',                    
-                },
-            })
+        await axiosClient.post('/api/categories/insert', insertForm)
         .then(response => {
             if(onSuccess !== null) return onSuccess(response)
         })
@@ -45,13 +38,7 @@ export default function useCategories(category_id = null, insertForm = null, upd
      * update a category with the updateForm data
      */
     const updateCategory = async (categoryId,onSuccess = null) => {
-        await axios.patch(`/api/categories/update/${categoryId}`, updateForm,
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',                    
-                },
-            })
+        await axiosClient.patch(`/api/categories/update/${categoryId}`, updateForm)
         .then(response => {
             if(onSuccess !== null) return onSuccess(response)
         })
@@ -64,13 +51,7 @@ export default function useCategories(category_id = null, insertForm = null, upd
      * delete a category with the current category id 
      */
      const deleteCategory = async (categoryId,onSuccess = null) => {
-        await axios.delete(`/api/categories/delete/${categoryId}`,
-            {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',                    
-                },
-            })
+        await axiosClient.delete(`/api/categories/delete/${categoryId}`)
         .then(response => {
             if(onSuccess !== null) return onSuccess(response)
         })

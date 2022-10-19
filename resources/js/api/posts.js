@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axiosClient from '../axios'
 import { ref } from 'vue'
 
 export default function usePost(post_id) {
@@ -10,7 +10,7 @@ export default function usePost(post_id) {
      * get the post with the current post_id
      */
     const getPost = async () => {
-      let response = await axios.get(`/api/posts/${post_id}`)
+      let response = await axiosClient.get(`/api/posts/${post_id}`)
       post.value = response.data.data[0]
     }
 
@@ -18,7 +18,7 @@ export default function usePost(post_id) {
      * list all posts
      */
     const getPosts = async () => {
-      let response = await axios.get(`/api/posts`)
+      let response = await axiosClient.get(`/api/posts`)
       posts.value = response.data.data
       pagination.value = response.data.meta
     }
