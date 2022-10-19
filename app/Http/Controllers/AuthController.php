@@ -44,7 +44,7 @@ class AuthController extends Controller
     {
         $requestData = $request->all();
         $validator = Validator::make($requestData,[
-            'email' => 'email|required',
+            'email' => 'required',
             'password' => 'required'
         ]);
 
@@ -71,7 +71,7 @@ class AuthController extends Controller
                 'success' => false,
                 'message' => 'Echec de connexion'
             ];
-            return response()->json($response);
+            return response()->json($response, 401);
         }
     }
 
