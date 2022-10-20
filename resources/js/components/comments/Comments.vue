@@ -1,6 +1,9 @@
 <template>
     <div id="comments">
-        <Comment v-for="comment in comments" :key="comment.id" :comment="comment" />
+        <Comment v-if="comments.length > 0" v-for="comment in comments" :key="comment.id" :comment="comment" />
+        <div v-else id="comments-empty">
+            <p>Soit le premier à poster un commentaire !</p>
+        </div>
     </div>
 </template>
 

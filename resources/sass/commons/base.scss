@@ -47,8 +47,16 @@ h1 {
   font-size: 1.75rem;
 }
 
+.m-0 {
+  margin: 0;
+}
+
 .mt-2 {
   margin-top: 2rem;
+}
+
+.ml-3 {
+  margin-left: 3rem;
 }
 
 .mt-5 {
@@ -105,6 +113,10 @@ h1 {
   width: auto;
 }
 
+.w-7 {
+  width: 7rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -117,6 +129,15 @@ h1 {
   background-color: var(--clr-secondary);
   border-radius: 5px;
   box-shadow: var(--shadow-main);
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.ty-10 {
+  transform: translateY(-10px);
 }
 
 .form-container {
