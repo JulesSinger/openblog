@@ -6,6 +6,8 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Resources\CommentResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
+
 class CommentController extends Controller
 {
 
@@ -45,5 +47,21 @@ class CommentController extends Controller
         $comment->save();
 
         return response()->json($comment);
+    }
+
+    public function delete($id): JsonResponse
+    {
+        $comment = Comment::find($id);
+
+        if (!$comment) {
+            return response()->json([
+                'message' => "Le commentaire avec l'id \"${id}\" n'existe pas."
+            ], 404);
+        }
+
+        $comment->delete();
+
+        return response()->json(['message' => 'Le commentaire à bien été supprimé']);
+
     }
 }

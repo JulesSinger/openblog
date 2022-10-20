@@ -22,10 +22,21 @@ export default function useComments(form = null) {
         })
     }
 
+    /**
+     * delete a comment with the current id
+     */
+     const deleteComment = async (commentId, onSuccess = null) => {
+        await axiosClient.delete(`/api/comments/${commentId}`, form)
+        .then((response) => {
+            if (onSuccess !== null) return onSuccess(response)
+        })
+    }    
+
     return {
         comments,
         getComments,
-        postComment
+        postComment,
+        deleteComment
     }
 }
 

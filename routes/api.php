@@ -43,12 +43,14 @@ Route::get('/posts', [PostController::class, 'list']);
 Route::get('/posts/{id}', [PostController::class, 'index']);
 
 // Comment routes
-Route::post('/comment', [CommentController::class, 'store']);
 Route::get('/post/{id}/comments', [CommentController::class, 'index']);
+Route::delete('/comments/{id}', [CommentController::class, 'delete']);
 
 // Auth routes
 Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/user', function (Request $request) {
       return $request->user();
   });
+  Route::post('/comment', [CommentController::class, 'store']);
+
 });
