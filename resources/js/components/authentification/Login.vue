@@ -35,11 +35,12 @@
 
 import  { reactive } from 'vue'
 import { useAuth } from '../../api/auth.js'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 
 // router & store
 const router = useRouter()
+const route = useRoute()
 const store = useStore()
 
 /**
@@ -60,9 +61,9 @@ const { loginWithCredentials, errors } = useAuth(login_form)
  * if the request is successful, we store the user in our local storage
  */
 const call_login = () => {
-loginWithCredentials((response) => {
-  store.dispatch('auth/login',response.data.data.token)
-  router.push({ name: 'Home' })
-})
+  loginWithCredentials((response) => {
+    store.dispatch('auth/login',response.data.data.token)
+    router.push({ path : route.query.redirect ||  '/' })
+  })
 }
 </script>
