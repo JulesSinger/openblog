@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\CommentResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
 {
@@ -29,15 +30,24 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $requestData = $request->all();
+
+        $validator = Validator::make($requestData,[
             'content' => 'required',
             'subject' => 'required',
             'post_id' => 'required'
         ]);
-        
+
+        if ($validator->fails()) {
+            return response()->json([
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
         $content = $request->input('content');
         $post_id = $request->input('post_id');
         $subject = $request->input('subject');
+        
         $user = Auth::user();
         $comment = new Comment();
         $comment->content = $content;

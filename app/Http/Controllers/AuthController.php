@@ -25,6 +25,7 @@ class AuthController extends Controller
                 'errors' => $validator->errors()
             ], 422);
         }
+        
         $requestData['password'] = Hash::make($requestData['password']);
 
         $user = User::create($requestData);

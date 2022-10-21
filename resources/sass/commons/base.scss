@@ -174,8 +174,10 @@ h1 {
 }
 
 .alert-error {
-  text-align: center;
-  color: #FF9494;
+  * {
+    text-align: center;
+    color: #FF9494;
+  }
 }
 
 .flag {

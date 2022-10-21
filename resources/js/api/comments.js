@@ -3,6 +3,7 @@ import { ref } from 'vue'
 
 export default function useComments(form = null) {
     const comments = ref([])
+    const post_comment_errors  = ref([])
 
     /**
      * get comments of the current post id
@@ -20,6 +21,20 @@ export default function useComments(form = null) {
         .then((response) => {
             if (onSuccess !== null) return onSuccess(response)
         })
+        .catch((error) => {
+            post_comment_errors.value = []
+
+            switch(error.response.status) {
+                case 422: // erreurs de champs (champ vide ..)
+                
+                for(const key in error.response.data.errors) {
+                  if (error.response.data.errors[key][0] == 'validation.required') {
+                    post_comment_errors.value.push("Le champ '" +  key + "' est requis")
+                  }
+                }
+                break;
+            }
+        })
     }
 
     /**
@@ -36,7 +51,8 @@ export default function useComments(form = null) {
         comments,
         getComments,
         postComment,
-        deleteComment
+        deleteComment,
+        post_comment_errors
     }
 }
 

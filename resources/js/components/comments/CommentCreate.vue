@@ -3,6 +3,9 @@
         <label for="content">Ajouter un commentaire :</label>
         <input placeholder="Objet du commentaire" type="text" name="subject" id="subject" v-model="form.subject">
         <textarea placeholder="Contenu de votre commentaire ici" name="content" id="content" v-model="form.content"></textarea>
+        <div v-if="post_comment_errors" class="alert-error" style="display: block;">
+            <p v-for="error in post_comment_errors">{{ error }}</p>
+        </div>
         <div>
             <button type="submit" class="btn btn-markup">POSTER LE COMMENTAIRE</button>
         </div>
@@ -10,11 +13,12 @@
     <div v-else class="mt-2 ml-3 flex">
         <router-link :to="{name: 'Login', query: { redirect: fullPath}}" class="btn btn-markup w-7">Connecte toi !</router-link>
     </div>
+
 </template>
 
 <script setup>
 
-import { reactive, computed } from 'vue'
+import { reactive, computed, inject } from 'vue'
 import { useComments } from '../../api/comments.js'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
@@ -50,13 +54,18 @@ const form = reactive({
 /**
  * load comment api
  */
-const { postComment } = useComments(form)
+const { postComment, post_comment_errors } = useComments(form)
+
+
+const toast = inject('toast')
 
 /**
  * call a function that send a post comment request
  */
 const call_post_comment = () => {
-    postComment((response) => {})
+    postComment(() => {
+        toast.success('Commentaire posté')
+    })
 }
 
 </script>
