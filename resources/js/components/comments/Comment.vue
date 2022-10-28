@@ -5,7 +5,7 @@
       <p class="comment-infos"> {{ comment.created_at }} | {{ comment.author.pseudo }} | </p>
       <p> {{ comment.content }} </p>
       <form @submit.prevent='call_delete_comment(comment.id)'>
-        <button type="submit" class="btn btn-red w-a" v-if="loggedUser.role == 'admin'"> SUPPRIMER LE COMMENTAIRE</button>
+        <button v-if="loggedUser.role === 'admin' || loggedUser.id === comment.user_id" type="submit" class="btn btn-link" style="color:grey" > Supprimer votre commentaire</button>
       </form>
     </div>
   </div>
@@ -49,10 +49,6 @@ const toast = inject('toast');
  * call the function that request a delete comment request
  */
 const call_delete_comment = (commentId) => {
-  deleteComment(commentId, (response) => {
-    console.log(response)
-    toast.success("Commentaire supprimé")
-  })
-}
+  deleteComment(commentId, (response) => { toast.success("Commentaire supprimé")}, (error) => { toast.error(error.response.data.message)})}
 
 </script>

@@ -59,7 +59,7 @@ class CommentController extends Controller
         return response()->json($comment);
     }
 
-    public function delete($id): JsonResponse
+    public function delete($id, Request $request): JsonResponse
     {
         $comment = Comment::find($id);
 
@@ -67,6 +67,14 @@ class CommentController extends Controller
             return response()->json([
                 'message' => "Le commentaire avec l'id \"${id}\" n'existe pas."
             ], 404);
+        }   
+
+        $user = $request->user();
+
+        if($user->role != "admin" && $comment->user_id != $user->id) {
+            return response()->json([
+                'message' => "Vous n'avez pas la permission de supprimer ce commentaire."
+            ], 403);
         }
 
         $comment->delete();
