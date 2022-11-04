@@ -5,7 +5,7 @@
       <p class="comment-infos"> {{ comment.created_at }} | {{ comment.author.pseudo }} | </p>
       <p> {{ comment.content }} </p>
       <form @submit.prevent='call_delete_comment(comment.id)'>
-        <button v-if="loggedUser.role === 'admin' || loggedUser.id === comment.user_id" type="submit" class="btn btn-link" style="color:grey" > Supprimer votre commentaire</button>
+        <button v-if="loggedUser.role === 'admin' || loggedUser.id === comment.user_id" type="submit" class="btn btn-link" style="color:var(--clr-littlemarkup)" > Supprimer votre commentaire</button>
       </form>
     </div>
   </div>
