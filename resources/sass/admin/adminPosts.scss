@@ -1,0 +1,20 @@
+#post-create {
+  & {
+    width: 80%;
+    margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    & {
+      padding: 1rem;
+    }
+
+    button {
+      width: 15rem;
+      margin: auto;
+      display: block;
+    }
+  }
+}

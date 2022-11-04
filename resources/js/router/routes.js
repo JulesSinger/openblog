@@ -11,6 +11,8 @@ import Category from '../components/categories/Category.vue'
 import AdminPanel from '../components/admin/AdminPanel.vue'
 import AdminQuotes from '../components/admin/quotes/AdminQuotes.vue'
 import AdminCategories from '../components/admin/Categories/AdminCategories.vue'
+import AdminPosts from '../components/admin/Posts/AdminPosts.vue'
+import PostCreate from '../components/admin/Posts/PostCreate.vue'
 
 export const routes = [
   {
@@ -121,6 +123,24 @@ export const routes = [
     meta: { 
       middleware: "admin",
       title: 'Administration des catégories'
+    }
+  },
+  {
+    path: '/admin/posts',
+    name: 'AdminPosts',
+    component: AdminPosts,
+    meta: { 
+      middleware: "admin",
+      title: 'Administration des articles'
+    }
+  },
+  {
+    path: '/admin/posts/create',
+    name: 'PostCreate',
+    component: PostCreate,
+    meta: { 
+      middleware: "admin",
+      title: 'Création d\'un article'
     }
   }
 ]
