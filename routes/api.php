@@ -41,6 +41,7 @@ Route::delete('/quotes/{id}', [QuoteController::class, 'delete']);
 // Post routes
 Route::get('/posts', [PostController::class, 'list']);
 Route::get('/posts/{id}', [PostController::class, 'index']);
+Route::post('/posts/insert', [PostController::class, 'insert']);
 
 // Comment routes
 Route::get('/post/{id}/comments', [CommentController::class, 'index']);

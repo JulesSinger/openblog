@@ -27,4 +27,32 @@ class PostController extends Controller
     {
         return PostResource::collection(Post::paginate(10));
     }
+
+    public function insert(Request $request)
+    {
+        
+        $request->validate([
+            'title' => 'required',
+            'readTime' => 'required',
+            'author' => 'required',
+            'image' => 'required',
+            'summary' => 'required',
+            'category' => 'required'
+        ]);
+
+        $payload = $request->only(['title', 'readTime', 'author', 'image', 'summary', 'category']);
+        $categoryId = $payload['category']['id'];
+        
+        $post = new Post();
+        $post->title = $payload['title'];
+        $post->read_time = $payload['readTime'];
+        $post->author = $payload['author'];
+        $post->image = $payload['image'];
+        $post->summary = $payload['summary'];
+        $post->content = $payload['content'];
+        $post->category_id = $categoryId;
+        $post->save();
+
+        return response()->json($post->toArray());
+    }
 }
