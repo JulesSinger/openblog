@@ -29,6 +29,7 @@ class PostFactory extends Factory
             'publication_date' => now(),
             'image' => $this->faker->imageUrl(),
             'summary' => $this->faker->realText(100),
+            'content' => $this->faker->realText(2000),
         ];
     }
 }

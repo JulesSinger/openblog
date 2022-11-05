@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Resources\PostResource;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
@@ -35,12 +36,13 @@ class PostController extends Controller
             'title' => 'required',
             'readTime' => 'required',
             'author' => 'required',
+            'content' => 'required',
             'image' => 'required',
             'summary' => 'required',
             'category' => 'required'
         ]);
 
-        $payload = $request->only(['title', 'readTime', 'author', 'image', 'summary', 'category']);
+        $payload = $request->only(['title', 'readTime', 'author', 'image', 'summary', 'content', 'category']);
         $categoryId = $payload['category']['id'];
         
         $post = new Post();
@@ -51,6 +53,7 @@ class PostController extends Controller
         $post->summary = $payload['summary'];
         $post->content = $payload['content'];
         $post->category_id = $categoryId;
+        $post->publication_date = Carbon::now();
         $post->save();
 
         return response()->json($post->toArray());
