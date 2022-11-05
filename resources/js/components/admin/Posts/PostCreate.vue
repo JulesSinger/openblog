@@ -31,7 +31,7 @@
       
       <div class="form-container">
         <label for="category">Catégorie de l'article :</label>
-        <select name="category" id="category" class="custom-select" v-model="selected_category">
+        <select name="category" id="category" class="custom-select" v-model="form.category">
           <template v-for="category in categories" :key="category.id">
             <option
               :value="category"
@@ -45,23 +45,16 @@
       <div v-if="post_comment_errors" class="alert-error" style="display: block;">
         <p v-for="error in post_comment_errors">{{ error }}</p>
       </div>
-      
-      <div>
-        <button type="submit" class="btn btn-markup">POSTER LE COMMENTAIRE</button>
-      </div>
+      <button type="submit" class="btn btn-markup">POSTER LE COMMENTAIRE</button>
     </form>
   </div>
   
 </template>
 
 <script setup>
-import { reactive, computed, inject, onMounted, ref } from 'vue'
+import { reactive, inject, onMounted, ref } from 'vue'
 import useCategories from '../../../api/categories'
-
-/**
- * selected_category is the selected category to apply for the new post
- */
- const selected_category = ref(null)
+import usePost from '../../../api/posts';
 
 /**
  * this form is linked to the create comment form in template
@@ -73,28 +66,33 @@ import useCategories from '../../../api/categories'
     image: '',
     summary: '',
     content: '',
+    category: {}
 })
 
 const toast = inject('toast')
 
 /**
- * call a function that send a request to create a new post
- */
- const call_create_post = () => {
-    createPost(() => {
-        toast.success('Commentaire posté')
-    })
-}
-
-/**
  * import the categories api functions
  */
- const { categories, getCategories } = useCategories()
+const { categories, getCategories } = useCategories()
 
+/**
+ * import the post api function
+ */
+const { insertPost } = usePost(null, form)
+
+/**
+ * call a function that send a request to create a new post
+ */
+const call_create_post = () => {
+  insertPost(() => {
+    toast.success('Article créé')
+  })
+}
 
 /**
  * When the component loads, we get the categories
  */
- onMounted(getCategories())
+onMounted(getCategories())
 
 </script>
