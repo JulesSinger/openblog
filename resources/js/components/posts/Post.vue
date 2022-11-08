@@ -16,7 +16,7 @@
         <div class="post-main-content">
           <h2 id="post-title"> {{ post.title.toUpperCase() }} </h2>
           <p id="post-infos"> {{ post.publication_date }} | {{ post.read_time }} mins | {{ post.author }} </p>
-          <p> {{ post.content }} </p>
+          <Markdown :source="post.content" html linkify/>
           <h2 id="comment-title">COMMENTAIRES</h2>
         </div>
       
@@ -37,6 +37,7 @@ import Flag from '../helpers/Flag.vue'
 import { usePost } from '../../api/posts'
 import { onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import Markdown from 'vue3-markdown-it'
 
 // route
 const route = useRoute()
